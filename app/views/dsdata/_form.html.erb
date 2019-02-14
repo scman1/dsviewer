@@ -1,0 +1,112 @@
+<%= form_with(model: dsdatum, local: true) do |form| %>
+  <% if dsdatum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dsdatum.errors.count, "error") %> prohibited this dsdatum from being saved:</h2>
+
+      <ul>
+      <% dsdatum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ds_id %>
+    <%= form.text_field :ds_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :creation_datetime %>
+    <%= form.datetime_select :creation_datetime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :creator %>
+    <%= form.text_field :creator %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mids_level %>
+    <%= form.number_field :mids_level %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scientific_name %>
+    <%= form.text_field :scientific_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :common_name %>
+    <%= form.text_field :common_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :locality %>
+    <%= form.text_field :locality %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recorded_by %>
+    <%= form.text_field :recorded_by %>
+  </div>
+
+  <div class="field">
+    <%= form.label :collection_date %>
+    <%= form.date_select :collection_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :catalog_number %>
+    <%= form.text_field :catalog_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_catalog_numbers %>
+    <%= form.text_field :other_catalog_numbers %>
+  </div>
+
+  <div class="field">
+    <%= form.label :institution_code %>
+    <%= form.text_field :institution_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :collection_code %>
+    <%= form.text_field :collection_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stable_identifier %>
+    <%= form.text_field :stable_identifier %>
+  </div>
+
+  <div class="field">
+    <%= form.label :physical_specimen_id %>
+    <%= form.text_field :physical_specimen_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :determinations %>
+    <%= form.text_field :determinations %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cat_of_life_reference %>
+    <%= form.text_field :cat_of_life_reference %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image_id %>
+    <%= form.text_field :image_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

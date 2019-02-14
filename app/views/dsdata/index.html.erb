@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dsdata</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ds</th>
+      <th>Creation datetime</th>
+      <th>Creator</th>
+      <th>Mids level</th>
+      <th>Scientific name</th>
+      <th>Common name</th>
+      <th>Country</th>
+      <th>Locality</th>
+      <th>Recorded by</th>
+      <th>Collection date</th>
+      <th>Catalog number</th>
+      <th>Other catalog numbers</th>
+      <th>Institution code</th>
+      <th>Collection code</th>
+      <th>Stable identifier</th>
+      <th>Physical specimen</th>
+      <th>Determinations</th>
+      <th>Cat of life reference</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dsdata.each do |dsdatum| %>
+      <tr>
+        <td><%= dsdatum.ds_id %></td>
+        <td><%= dsdatum.creation_datetime %></td>
+        <td><%= dsdatum.creator %></td>
+        <td><%= dsdatum.mids_level %></td>
+        <td><%= dsdatum.scientific_name %></td>
+        <td><%= dsdatum.common_name %></td>
+        <td><%= dsdatum.country %></td>
+        <td><%= dsdatum.locality %></td>
+        <td><%= dsdatum.recorded_by %></td>
+        <td><%= dsdatum.collection_date %></td>
+        <td><%= dsdatum.catalog_number %></td>
+        <td><%= dsdatum.other_catalog_numbers %></td>
+        <td><%= dsdatum.institution_code %></td>
+        <td><%= dsdatum.collection_code %></td>
+        <td><%= dsdatum.stable_identifier %></td>
+        <td><%= dsdatum.physical_specimen_id %></td>
+        <td><%= dsdatum.determinations %></td>
+        <td><%= dsdatum.cat_of_life_reference %></td>
+        <td><%= dsdatum.image_id %></td>
+        <td><%= link_to 'Show', dsdatum %></td>
+        <td><%= link_to 'Edit', edit_dsdatum_path(dsdatum) %></td>
+        <td><%= link_to 'Destroy', dsdatum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dsdatum', new_dsdatum_path %>

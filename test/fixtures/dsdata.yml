@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ds_id: MyString
+  creation_datetime: 2019-02-14 22:40:53
+  creator: MyString
+  mids_level: 1
+  scientific_name: MyString
+  common_name: MyString
+  country: MyString
+  locality: MyString
+  recorded_by: MyString
+  collection_date: 2019-02-14
+  catalog_number: MyString
+  other_catalog_numbers: MyString
+  institution_code: MyString
+  collection_code: MyString
+  stable_identifier: MyString
+  physical_specimen_id: MyString
+  determinations: MyString
+  cat_of_life_reference: MyString
+  image_id: MyString
+
+two:
+  ds_id: MyString
+  creation_datetime: 2019-02-14 22:40:53
+  creator: MyString
+  mids_level: 1
+  scientific_name: MyString
+  common_name: MyString
+  country: MyString
+  locality: MyString
+  recorded_by: MyString
+  collection_date: 2019-02-14
+  catalog_number: MyString
+  other_catalog_numbers: MyString
+  institution_code: MyString
+  collection_code: MyString
+  stable_identifier: MyString
+  physical_specimen_id: MyString
+  determinations: MyString
+  cat_of_life_reference: MyString
+  image_id: MyString
