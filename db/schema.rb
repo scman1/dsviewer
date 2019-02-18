@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_14_224053) do
+ActiveRecord::Schema.define(version: 2019_02_18_151522) do
+
+  create_table "credentials", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "url"
+    t.string "login"
+    t.string "password"
+    t.string "server_type"
+    t.boolean "in_use"
+    t.boolean "default"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "dsdata", force: :cascade do |t|
     t.string "ds_id"
