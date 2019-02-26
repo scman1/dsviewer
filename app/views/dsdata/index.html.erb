@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Digital Specimens Data</h1>
+<h4>Digital Specimens List</h4>
 
-<table>
+<table  class="table table-striped table-bordered table-responsive">
   <thead>
     <tr>
       <th>Specimen</th>
-      <th>Mids level</th>
-      <th>Scientific name</th>
+      <th>MIDS Level</th>
+      <th>Scientific Name</th>
       <th>Country</th>
       <th colspan="1"></th>
     </tr>
@@ -20,12 +20,11 @@
         <td><%= dsdatum.mids_level %></td>
         <td><%= dsdatum.scientific_name %></td>
         <td><%= dsdatum.country %></td>
-        <td><%# = link_to 'something', dsdatum %> 
-	    <% @id=dsdatum.ds_id.to_s() %>
-	    <div class="btn btn-primary">
-                <%= link_to 'Show', {:controller => 'dsdata' ,
-                  :action => 'show', :id => @id}, :class => "btn" %> </td>
-            </div>
+        <td>
+            <% @id=dsdatum.ds_id.to_s() %>
+            <%= link_to 'Show', {:controller => 'dsdata' ,
+              :action => 'show', :id => @id}, :class => "btn btn-primary btn-xs" %> 
+        </td>
       </tr>
     <% end %>
   </tbody>

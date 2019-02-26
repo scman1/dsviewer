@@ -85,14 +85,17 @@ class DsdataController < ApplicationController
     end
 
     def get_credentials
-      credential = Credential.first()
+      credential = Credential.where(:server_type => 'cordra', :default=>true, :in_use=>true).first()
       return credential
     end
 
     def get_digital_specimens
       cordra_credential = get_credentials()
-     
-      dsr_uri = "http://nsidr.org:8080/objects/?query=type:\"Digital Specimen\"&pageNum=0&pageSize=20"
+      type="Digital Specimen"
+      page_items=10
+      page_num=1
+      dsr_uri = "http://nsidr.org:8080/objects/?query=type:\""+type+
+        "\"&pageNum="+ page_num.to_s+"&pageSize="+page_items.to_s
       parsed_uri = URI.parse(dsr_uri)
       
       req = Net::HTTP::Get.new(parsed_uri) 
