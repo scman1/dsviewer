@@ -22,8 +22,10 @@
         <td><%= dsdatum.country %></td>
         <td><%# = link_to 'something', dsdatum %> 
 	    <% @id=dsdatum.ds_id.to_s() %>
-            <%= link_to 'Show', {:controller => 'dsdata' ,
-              :action => 'show', :id => @id}, :class => "link_img" %></td>
+	    <div class="btn btn-primary">
+                <%= link_to 'Show', {:controller => 'dsdata' ,
+                  :action => 'show', :id => @id}, :class => "btn" %> </td>
+            </div>
       </tr>
     <% end %>
   </tbody>
