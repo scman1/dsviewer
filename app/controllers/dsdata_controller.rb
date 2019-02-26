@@ -4,8 +4,17 @@ class DsdataController < ApplicationController
   # GET /dsdata
   # GET /dsdata.json
   def index
-    #@dsdata = Dsdatum.all
-    @dsdata = get_digital_specimens
+    if not(params.key?("page"))
+      num_page = 0
+    else
+      num_page = params[:page].to_i-1
+    end
+    if not(params.key?("items"))
+      items = 10
+    else
+      items = params[:items].to_i
+    end
+    @dsdata = get_digital_specimens(num_page, items)
   end
 
   # GET /dsdata/1
@@ -67,10 +76,6 @@ class DsdataController < ApplicationController
     require 'net/http'
     # Use callbacks to share common setup or constraints between actions.
     def set_dsdatum
-      #retrieve individual specimens
-      puts("*****************************************************************")
-      puts(params)
-      puts("*****************************************************************")
       @dsdatum = get_digital_specimen(params[:id])
     end
 
@@ -89,11 +94,11 @@ class DsdataController < ApplicationController
       return credential
     end
 
-    def get_digital_specimens
+    def get_digital_specimens(page, items)
       cordra_credential = get_credentials()
       type="Digital Specimen"
-      page_items=10
-      page_num=1
+      page_items=items
+      page_num=page
       dsr_uri = "http://nsidr.org:8080/objects/?query=type:\""+type+
         "\"&pageNum="+ page_num.to_s+"&pageSize="+page_items.to_s
       parsed_uri = URI.parse(dsr_uri)
