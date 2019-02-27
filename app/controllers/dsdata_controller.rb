@@ -28,7 +28,8 @@ class DsdataController < ApplicationController
     @dsdatum = Dsdatum.new
   end
 
-  # GET /dsdata/1/edit
+  # GET /dsdata/1/edit"dsdatum"=>{"ds_id"=>"newspecimen01", "creation_datetime(1i)"=>"2019", "creation_datetime(2i)"=>"2", "creation_datetime(3i)"=>"27", "creation_datetime(4i)"=>"10", "creation_datetime(5i)"=>"18", "creator"=>"", "mids_level"=>"", "scientific_name"=>"", "common_name"=>"", "country"=>"", "locality"=>"", "recorded_by"=>"", "collection_date(1i)"=>"2019", "collection_date(2i)"=>"2", "collection_date(3i)"=>"27", "catalog_number"=>"", "other_catalog_numbers"=>"", "institution_code"=>"", "collection_code"=>"", "stable_identifier"=>"", "physical_specimen_id"=>"", "determinations"=>"", "cat_of_life_reference"=>"", "image_id"=>""}, "commit"=>"Create Dsdatum"}
+
   def edit
   end
 
@@ -36,13 +37,22 @@ class DsdataController < ApplicationController
   # POST /dsdata.json
   def create
     @dsdatum = Dsdatum.new(dsdatum_params)
-    puts(@dsdatum)
+    dsdatum = dsdatum_params
+    #puts("****************************************************")
+    specimen_id = dsdatum["ds_id"]
+    dsdatum["ds_id"] =""
+    puts(dsdatum) #params[:dsdatum].to_json)
+    response= add_digital_specimen(specimen_id, dsdatum)
+    puts(response=="200")
+    puts (response)
+    #puts("****************************************************")
+   
     respond_to do |format|
-      if @dsdatum.save
-        format.html { redirect_to @dsdatum, notice: 'Dsdatum was successfully created.' }
+      if response == "200"
+        format.html { redirect_to "/dsdata/"+specimen_id, notice: 'Specimen was successfully created.' }
         format.json { render :show, status: :created, location: @dsdatum }
       else
-        format.html { render :new }
+        format.html { render :new, notice: 'Specimen could not be created.' }
         format.json { render json: @dsdatum.errors, status: :unprocessable_entity }
       end
     end
@@ -93,7 +103,7 @@ class DsdataController < ApplicationController
       credential = Credential.where(:server_type => 'cordra', :default=>true, :in_use=>true).first()
       return credential
     end
-
+    
     def get_digital_specimens(page, items)
       cordra_credential = get_credentials()
       type="Digital Specimen"
@@ -150,9 +160,46 @@ class DsdataController < ApplicationController
         collection_code:json_obj["collectionCode"], 
         stable_identifier:json_obj["stableIdentifier"], 
         physical_specimen_id:json_obj["physicalSpecimenId"], 
-        determinations:json_obj["Determinations"], 
+        determinations:json_obj["D7eterminations"], 
         cat_of_life_reference:json_obj["catOfLifeReference"], 
         image_id:json_obj["imageID"])
       return ds_specimen
+    end
+
+    def add_digital_specimen(ds_id, ds_data)
+      cordra_credential = get_credentials()
+      dsr_uri = "http://nsidr.org:8080/objects/?type=Digital%20Specimen&suffix="+ds_id
+      ds={
+        "id": "",
+        "creator": "",
+        "midslevel":ds_data["mids_level"].to_i,
+        "scientificName": ds_data["scientific_name"],
+        "country": ds_data["country"],
+        "locality": ds_data["locality"],
+        "decimalLat/Long": [],
+        "recordedBy": ds_data["recorded_by"],
+        "collectionDate": ds_data["collection_date"].to_s,
+        "catalogNumber":  ds_data["catalog_number"],
+        "otherCatalogNumbers": ds_data["other_catalog_numbers"],
+        "collectionCode": ds_data["collection_code"],
+        "institutionCode":  ds_data["institution_code"],
+        "stableIdentifier": ds_data["stable_identifier"],
+        "physicalSpecimenId": ds_data["physical_specimen_id"],
+        "Determinations": ds_data["determinations"]
+      }
+      parsed_uri = URI.parse(dsr_uri)
+      header = {'Content-Type': 'text/json'}
+      req = Net::HTTP::Post.new(parsed_uri, header)
+      req.basic_auth(cordra_credential.login, cordra_credential.password)
+      req.body = ds.to_json
+   
+      puts("****************************************************")
+      puts(ds_id)
+      puts(ds.to_json)
+      puts("****************************************************")
+      res= Net::HTTP.start(parsed_uri.hostname, parsed_uri.port){|http| http.request(req)}
+      puts(res.body)
+      puts(res.code)
+      return res.code
     end
 end

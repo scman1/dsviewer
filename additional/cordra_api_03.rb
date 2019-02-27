@@ -11,7 +11,7 @@ if __FILE__ == $0
 end
 # need retries to make sure we get the right response from the server
 #url = URI.parse('http://131.251.172.30:8080/objects/20.5000.1025/B100003484')
-url = URI.parse("http://nsidr.org:8080/objects/?type=Digital%20Specimen&suffix=B100003483")
+url = URI.parse("http://nsidr.org:8080/objects/?type=Digital%20Specimen&suffix=B100003482")
   ds={
        "id": "",
        "creator": "",
@@ -22,12 +22,12 @@ url = URI.parse("http://nsidr.org:8080/objects/?type=Digital%20Specimen&suffix=B
        "decimalLat/Long": [],
        "recordedBy": "F.M.Bailey",
        "collectionDate": "1932-04-08",
-       "catalogNumber": "B 10 0003483",
+       "catalogNumber": "B 10 0003482",
        "otherCatalogNumbers": "",
        "collectionCode": "Australia: Queensland",
        "institutionCode": "B",
-       "stableIdentifier": "http://herbarium.bgbm.org/object/B100003483",
-       "physicalSpecimenId": "B 10 0003483",
+       "stableIdentifier": "http://herbarium.bgbm.org/object/B100003482",
+       "physicalSpecimenId": "B 10 0003482",
        "Determinations": "Yes"
      }
 
@@ -38,8 +38,7 @@ req.body = ds.to_json
 puts(ds)
 res= Net::HTTP.start(url.hostname, url.port){|http| http.request(req)}
 
-puts(res.body)
+puts(res)
 
 jsonv = JSON.parse(res.body)
 
-puts(jsonv)
