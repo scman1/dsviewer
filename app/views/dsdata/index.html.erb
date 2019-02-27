@@ -5,8 +5,8 @@
 <table  class="table table-striped table-bordered table-responsive">
   <thead>
     <tr>
-      <th>Specimen</th>
-      <th>MIDS Level</th>
+      <th> Specimen</th>
+      <th class="d-none d-lg-block"> MIDS Level</th>
       <th>Scientific Name</th>
       <th>Country</th>
       <th colspan="1"></th>
@@ -17,7 +17,7 @@
     <% @dsdata.each do |dsdatum| %>
       <tr>
         <td><%= dsdatum.ds_id %></td>
-        <td><%= dsdatum.mids_level %></td>
+        <td class="d-none d-lg-block"><%= dsdatum.mids_level %></td>
         <td><%= dsdatum.scientific_name %></td>
         <td><%= dsdatum.country %></td>
         <td>

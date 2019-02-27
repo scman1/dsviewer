@@ -36,7 +36,7 @@ class DsdataController < ApplicationController
   # POST /dsdata.json
   def create
     @dsdatum = Dsdatum.new(dsdatum_params)
-
+    puts(@dsdatum)
     respond_to do |format|
       if @dsdatum.save
         format.html { redirect_to @dsdatum, notice: 'Dsdatum was successfully created.' }
@@ -137,7 +137,10 @@ class DsdataController < ApplicationController
       json_obj = JSON.parse(res.body)
       puts(json_obj)
       ds_specimen = nil
-      ds_specimen = Dsdatum.new(ds_id:json_obj["id"],creation_datetime:json_obj["creationdatetime"], creator:json_obj["creator"], mids_level:json_obj["midslevel"], scientific_name:json_obj["scientificName"], 
+      ds_specimen = Dsdatum.new(ds_id:json_obj["id"],
+        creation_datetime:json_obj["creationdatetime"],
+        creator:json_obj["creator"], mids_level:json_obj["midslevel"], 
+        scientific_name:json_obj["scientificName"], 
         common_name:json_obj["commonName"], country:json_obj["country"], 
         locality:json_obj["locality"], recorded_by:json_obj["recordedBy"],
         collection_date:json_obj["collectionDate"], 
