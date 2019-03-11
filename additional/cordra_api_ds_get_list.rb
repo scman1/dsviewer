@@ -1,3 +1,4 @@
+# retrieve list of DS objects
 #!/usr/bin/env ruby
 
 require "open-uri"

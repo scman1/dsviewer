@@ -1,3 +1,4 @@
+#retrieve object by id
 #!/usr/bin/env ruby
 
 require "open-uri"
@@ -13,10 +14,10 @@ end
 #url = URI.parse('http://131.251.172.30:8080/objects/20.5000.1025/B100003484')
 url = URI.parse('http://nsidr.org:8080/objects/20.5000.1025/B100003484')
 
+
 req = Net::HTTP::Get.new(url)
 req.basic_auth(v1, v2)
 res= Net::HTTP.start(url.hostname, url.port){|http| http.request(req)}
-puts(res.body)
 
 jsonv = JSON.parse(res.body)
 

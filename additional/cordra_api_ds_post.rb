@@ -1,3 +1,4 @@
+#create a new object
 #!/usr/bin/env ruby
 
 require "open-uri"
