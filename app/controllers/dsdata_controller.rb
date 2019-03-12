@@ -30,6 +30,12 @@ class DsdataController < ApplicationController
 
   # GET /dsdata/1/edit
   def edit
+    #puts dsdatum_params
+    puts("*****************GET /dsdata/1/edit*****************")
+    puts(params)
+    puts(@dsdatum.id)
+    puts(@dsdatum.new_record?)
+    puts("****************************************************")
   end
 
   # POST /dsdata
@@ -38,11 +44,11 @@ class DsdataController < ApplicationController
     @dsdatum = Dsdatum.new(dsdatum_params)
     dsdatum = dsdatum_params
     dsobj = DsDataRestApi.new
-    #puts("****************************************************")
+    #puts("*******************POST /dsdata*********************")
     specimen_id = dsdatum["ds_id"]
     dsdatum["ds_id"] =""
     puts(dsdatum) #params[:dsdatum].to_json)
-    response= dsobj.add_digital_specimen(specimen_id, dsdatum)
+    response= dsobj.add_ds(specimen_id, dsdatum)
     puts(response=="200")
     puts (response)
     #puts("****************************************************")
@@ -84,15 +90,24 @@ class DsdataController < ApplicationController
 
   private
     include RestApis
-
     # Use callbacks to share common setup or constraints between actions.
     def set_dsdatum
       dsobj = DsDataRestApi.new
       @dsdatum = dsobj.get_ds(params[:id])
+      puts("*****************set_dsdatum************************")
+      puts(@dsdatum)
+      if @dsdatum.id.nil?()
+        puts("rails DS ID is empty")
+        @dsdatum.id = 99999
+        puts(@dsdatum.id)
+      end
+      puts("****************************************************")
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dsdatum_params
+       puts("*****************dsdatum_params********************")
+       puts(params)
        params.require(:dsdatum).permit(:ds_id,:creation_datetime, :creator, 
               :mids_level, :scientific_name, :common_name, :country, :locality,
               :recorded_by, :collection_date, :catalog_number,
