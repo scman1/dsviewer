@@ -1,5 +1,5 @@
 <%= form_with(model: dsdatum, local: true) do |form| %>
-  <% puts(dsdatum.ds_id) %>
+  <%# puts(dsdatum.ds_id) %>
   <% if dsdatum.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(dsdatum.errors.count, "error") %> prohibited this dsdatum from being saved:</h2>

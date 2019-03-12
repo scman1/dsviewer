@@ -95,14 +95,33 @@ module RestApis
       req.basic_auth(cordra_credential.login, cordra_credential.password)
       req.body = ds.to_json
    
-      puts("****************************************************")
+      puts("********************add_ds**************************")
       puts(ds_id)
       puts(ds.to_json)
       puts("****************************************************")
       res= Net::HTTP.start(parsed_uri.hostname, parsed_uri.port){|http| http.request(req)}
       puts(res.body)
       puts(res.code)
+
       return res.code
+    end
+    def parse_params(ds_params)
+      ds_properties=["ds_id", "creation_datetime", "creator", "mids_level", 
+        "scientific_name", "common_name", "country", "locality", "recorded_by",
+        "collection_date", "catalog_number", "other_catalog_numbers",
+        "institution_code", "collection_code", "stable_identifier", 
+        "physical_specimen_id", "determinations", "cat_of_life_reference", 
+        "image_id"]
+      dsdatum={}
+      puts("****************************************************")
+      puts(ds_params)
+      for ppty in ds_properties
+        puts(ppty + ": " + ds_params[ppty].to_s)
+        dsdatum[ppty] = ds_params[ppty] 
+      end
+      puts(dsdatum)
+      ds_params["dsdatum"] = dsdatum
+      return ds_params
     end
   end#class
 end#module

@@ -49,15 +49,15 @@ class DsdataController < ApplicationController
     dsdatum["ds_id"] =""
     puts(dsdatum) #params[:dsdatum].to_json)
     response= dsobj.add_ds(specimen_id, dsdatum)
-    puts(response=="200")
-    puts (response)
+    puts(response.code=="200")
     #puts("****************************************************")
    
     respond_to do |format|
-      if response == "200"
+      if response.code == "200"
         format.html { redirect_to "/dsdata/"+specimen_id, notice: 'Specimen was successfully created.' }
         format.json { render :show, status: :created, location: @dsdatum }
       else
+        dsdatum["errors"]=response.body
         format.html { render :new, notice: 'Specimen could not be created.' }
         format.json { render json: @dsdatum.errors, status: :unprocessable_entity }
       end
@@ -67,6 +67,9 @@ class DsdataController < ApplicationController
   # PATCH/PUT /dsdata/1
   # PATCH/PUT /dsdata/1.json
   def update
+    puts("*****************PATCH/PUT /dsdata/1************************")
+    puts(@dsdatum)
+    puts("****************************************************")
     respond_to do |format|
       if @dsdatum.update(dsdatum_params)
         format.html { redirect_to @dsdatum, notice: 'Dsdatum was successfully updated.' }
@@ -96,11 +99,8 @@ class DsdataController < ApplicationController
       @dsdatum = dsobj.get_ds(params[:id])
       puts("*****************set_dsdatum************************")
       puts(@dsdatum)
-      if @dsdatum.id.nil?()
-        puts("rails DS ID is empty")
-        @dsdatum.id = 99999
-        puts(@dsdatum.id)
-      end
+      @dsdatum.ds_id = @dsdatum.ds_id.split('/')[1]
+      puts(@dsdatum.ds_id)
       puts("****************************************************")
     end
 
@@ -108,6 +108,8 @@ class DsdataController < ApplicationController
     def dsdatum_params
        puts("*****************dsdatum_params********************")
        puts(params)
+       dsobj = DsDataRestApi.new
+       @dsdatum = dsobj.parse_params(params)
        params.require(:dsdatum).permit(:ds_id,:creation_datetime, :creator, 
               :mids_level, :scientific_name, :common_name, :country, :locality,
               :recorded_by, :collection_date, :catalog_number,

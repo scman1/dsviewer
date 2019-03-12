@@ -11,7 +11,7 @@ if __FILE__ == $0
   v2 = ARGV[1]
 end
 # need retries to make sure we get the right response from the server
-url = URI.parse("http://nsidr.org:8080/objects/20.5000.1025/B100003483")
+url = URI.parse("http://nsidr.org:8080/objects/20.5000.1025/20.5000.1025/newspecimen03")
 
 req = Net::HTTP::Delete.new(url)
 req.basic_auth(v1, v2)
