@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 #bootstrap gems
 gem 'bootstrap'
+gem 'bootstrap-sass'
 gem 'jquery-rails'
 
 #pagination gems
