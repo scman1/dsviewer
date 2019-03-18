@@ -99,7 +99,7 @@ class DsdataController < ApplicationController
       @dsdatum = dsobj.get_ds(params[:id])
       puts("*****************set_dsdatum************************")
       puts(@dsdatum)
-      @dsdatum.ds_id = @dsdatum.ds_id.split('/')[1]
+      #@dsdatum.ds_id = @dsdatum.ds_id.split('/')[1]
       puts(@dsdatum.ds_id)
       puts("****************************************************")
     end
