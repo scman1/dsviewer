@@ -44,7 +44,8 @@ gem 'jquery-rails'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
-#
+#cordra gem
+gem 'cordra_rest_client', :git => 'https://github.com/scman1/cordra_client.git'
 gem 'faraday'
 
 group :development, :test do

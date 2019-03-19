@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/scman1/cordra_client.git
+  revision: 721d3f20b3334e2ea57504fa2456c6bf1763a47e
+  specs:
+    cordra_rest_client (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -226,6 +232,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  cordra_rest_client!
   faraday
   jbuilder (~> 2.5)
   jquery-rails
