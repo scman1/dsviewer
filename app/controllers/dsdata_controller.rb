@@ -93,6 +93,7 @@ class DsdataController < ApplicationController
 
   private
     include RestApis
+    include CordraRestClient
     # Use callbacks to share common setup or constraints between actions.
     def set_dsdatum
       dsobj = DsDataRestApi.new
