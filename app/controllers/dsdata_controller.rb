@@ -3,6 +3,7 @@ class DsdataController < ApplicationController
   # GET /dsdata
   # GET /dsdata.json
   def index
+    #get the list of digital specimens from api
     if not(params.key?("page"))
       num_page = 0
     else
@@ -13,6 +14,11 @@ class DsdataController < ApplicationController
     else
       items = params[:items].to_i
     end
+    
+    puts("*****************GET /dsdata*****************")
+    list_ds = CordraRestClient::DigitalObject.search("Digital Specimen",num_page, items)
+    puts(list_ds)
+    puts("*****************GET /dsdata*****************")
     dsobj = DsDataRestApi.new
     @dsdata = dsobj.get_dss(num_page, items)
   end

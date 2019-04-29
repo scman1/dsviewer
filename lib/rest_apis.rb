@@ -1,6 +1,7 @@
 module RestApis
   class DsDataRestApi
-    require 'net/http' 
+    require 'net/http'
+    include CordraRestClient
     def get_credentials
       credential = Credential.where(:server_type => 'cordra', :default=>true, :in_use=>true).first()
       return credential
