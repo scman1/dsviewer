@@ -34,18 +34,9 @@ class DsdataController < ApplicationController
       ds_data = ds["content"]
       CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, ds_data
       ds_return.push(new_ds)
-      ds_data.each do |field, arg|
-        instance_var = field.gsub('/','_')
-        instance_var = instance_var.gsub(' ','_')
-        puts(field+": " + arg.to_s + " " + new_ds.instance_variable_get("@#{instance_var}").to_s)
-      end
     end
     #end
-    
-    puts("*****************GET /dsdata*****************")
-    dsobj = DsDataRestApi.new
-    
-    @dsdata = dsobj.get_dss(num_page, items)
+    @dsdata = ds_return
     puts("*****************GET /dsobj*****************")
     puts @dsdata 
     puts("*****************GET /dsobj*****************")

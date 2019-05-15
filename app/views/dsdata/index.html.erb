@@ -16,17 +16,17 @@
   <tbody>
     <% @dsdata.each do |dsdatum| %>
       <tr>
-        <td><%= dsdatum.ds_id %></td>
-        <td class="d-none d-lg-block"><%= dsdatum.mids_level %></td>
-        <td><%= dsdatum.scientific_name %></td>
+        <td><%= dsdatum.id.split("/")[1] %></td>
+        <td class="d-none d-lg-block"><%= dsdatum.midslevel %></td>
+        <td><%= dsdatum.scientificName %></td>
         <td><%= dsdatum.country %></td>
         <td>
-            <% @id=dsdatum.ds_id.to_s() %>
+            <% @id=dsdatum.id.split("/")[1] %>
             <%= link_to 'Show', {:controller => 'dsdata',
-              :action => 'show', :id => @id}, :class => "btn btn-primary btn-xs" %> 
+              :action => 'show', :id =>@id}, :class => "btn btn-primary btn-xs" %> 
         </td>
         <td><%= link_to 'Edit', {:controller => 'dsdata',
-              :action => 'edit', :id => @id}, :class => "btn btn-success btn-xs" %></td>
+              :action => 'edit', :id =>@id}, :class => "btn btn-success btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
