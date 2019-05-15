@@ -13,14 +13,11 @@ class DsdataController < ApplicationController
       items = 10
     else
       items = params[:items].to_i
-    end
-    
+    end    
     puts("*****************GET /dsdata*****************")
     # get DS list from CORDRA
     list_ds = CordraRestClient::DigitalObject.search("Digital Specimen",num_page, items)
-    # puts(list_ds)
     # get DS schema from CORDRA
-    #get DS schema
     result=CordraRestClient::DigitalObject.get_schema("Digital Specimen".gsub(" ","%20"))
     do_schema = JSON.parse(result.body)
     # create a new class for the DS from the schema
@@ -121,13 +118,30 @@ class DsdataController < ApplicationController
     include CordraRestClient
     # Use callbacks to share common setup or constraints between actions.
     def set_dsdatum
-      dsobj = DsDataRestApi.new
-      @dsdatum = dsobj.get_ds(params[:id])
-      puts("*****************set_dsdatum************************")
-      puts(@dsdatum)
-      #@dsdatum.ds_id = @dsdatum.ds_id.split('/')[1]
-      puts(@dsdatum.ds_id)
-      puts("****************************************************")
+	# A. get digital object
+	cdo = CordraRestClient::DigitalObject.find("20.5000.1025/#{params[:id]}")
+	# Check object id and type 
+	puts cdo.id
+	puts cdo.type
+	# B. get schema
+	#     The schema will be used to build a DO class dinamically
+	result=CordraRestClient::DigitalObject.get_schema(cdo.type.gsub(" ","%20"))
+	do_schema = JSON.parse(result.body)
+	# C. build new class using schema
+	do_properties = do_schema["properties"].keys
+	do_c = CordraRestClient::DigitalObjectFactory.create_class cdo.type.gsub(" ",""), do_properties 
+	new_ds = do_c.new
+	# the DO contents are a hash
+	# assing object values in content to class
+	CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, cdo.content			
+	
+        
+        @dsdatum = new_ds
+        puts("*****************set_dsdatum************************")
+        puts(@dsdatum)
+        #@dsdatum.ds_id = @dsdatum.ds_id.split('/')[1]
+        puts(@dsdatum.id)
+        puts("****************************************************")
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
