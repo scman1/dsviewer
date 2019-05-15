@@ -16,11 +16,39 @@ class DsdataController < ApplicationController
     end
     
     puts("*****************GET /dsdata*****************")
+    # get DS list from CORDRA
     list_ds = CordraRestClient::DigitalObject.search("Digital Specimen",num_page, items)
-    puts(list_ds)
+    # puts(list_ds)
+    # get DS schema from CORDRA
+    #get DS schema
+    result=CordraRestClient::DigitalObject.get_schema("Digital Specimen".gsub(" ","%20"))
+    do_schema = JSON.parse(result.body)
+    # create a new class for the DS from the schema
+    do_properties = do_schema["properties"].keys
+    ds_class = CordraRestClient::DigitalObjectFactory.create_class "Digital Specimen".gsub(" ",""), do_properties 
+    # convert each of the results into a DS object and 
+    # build a list of DS objects
+    ds_return=[] 
+    list_ds["results"].each do |ds|
+      new_ds = ds_class.new 
+      ds_data = ds["content"]
+      CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, ds_data
+      ds_return.push(new_ds)
+      ds_data.each do |field, arg|
+        instance_var = field.gsub('/','_')
+        instance_var = instance_var.gsub(' ','_')
+        puts(field+": " + arg.to_s + " " + new_ds.instance_variable_get("@#{instance_var}").to_s)
+      end
+    end
+    #end
+    
     puts("*****************GET /dsdata*****************")
     dsobj = DsDataRestApi.new
+    
     @dsdata = dsobj.get_dss(num_page, items)
+    puts("*****************GET /dsobj*****************")
+    puts @dsdata 
+    puts("*****************GET /dsobj*****************")
   end
 
   # GET /dsdata/1
