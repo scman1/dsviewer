@@ -1,25 +1,15 @@
-<%= form_with(model: dsdatum, local: true) do |form| %>
-  <%# puts(dsdatum.ds_id) %>
-  <% if dsdatum.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(dsdatum.errors.count, "error") %> prohibited this dsdatum from being saved:</h2>
+<%= form_with(url: dsdata_path) do |form| %>
+  <% puts(dsdatum.id) %>
 
-      <ul>
-      <% dsdatum.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= form.label :ds_id %>
-    <%= form.text_field :ds_id, value: dsdatum.ds_id %>
+    <%= form.text_field :id, value: dsdatum.id %>
   </div>
 
   <div class="field">
     <%= form.label :creation_datetime %>
-    <%= form.datetime_select :creation_datetime, value: dsdatum.creation_datetime %>
+    <%= form.datetime_select :creationdatetime, value: dsdatum.creationdatetime %>
   </div>
 
   <div class="field">
@@ -29,17 +19,17 @@
 
   <div class="field">
     <%= form.label :mids_level %>
-    <%= form.number_field :mids_level, value: dsdatum.mids_level %>
+    <%= form.number_field :midslevel, value: dsdatum.midslevel %>
   </div>
 
   <div class="field">
     <%= form.label :scientific_name %>
-    <%= form.text_field :scientific_name, value: dsdatum.scientific_name %>
+    <%= form.text_field :scientificName, value: dsdatum.scientificName %>
   </div>
 
   <div class="field">
     <%= form.label :common_name %>
-    <%= form.text_field :common_name, value: dsdatum.common_name %>
+    <%= form.text_field :commonName, value: dsdatum.commonName %>
   </div>
 
   <div class="field">
@@ -54,57 +44,52 @@
 
   <div class="field">
     <%= form.label :recorded_by %>
-    <%= form.text_field :recorded_by, value: dsdatum.recorded_by %>
+    <%= form.text_field :recordedBy, value: dsdatum.recordedBy %>
   </div>
 
   <div class="field">
     <%= form.label :collection_date %>
-    <%= form.date_select :collection_date, value: dsdatum.collection_date %>
+    <%= form.date_select :collectionDate, value: dsdatum.collectionDate %>
   </div>
 
   <div class="field">
     <%= form.label :catalog_number %>
-    <%= form.text_field :catalog_number, value: dsdatum.catalog_number %>
+    <%= form.text_field :catalogNumber, value: dsdatum.catalogNumber %>
   </div>
 
   <div class="field">
     <%= form.label :other_catalog_numbers %>
-    <%= form.text_field :other_catalog_numbers, value: dsdatum.other_catalog_numbers %>
+    <%= form.text_field :otherCatalogNumbers, value: dsdatum.otherCatalogNumbers %>
   </div>
 
   <div class="field">
     <%= form.label :institution_code %>
-    <%= form.text_field :institution_code, value: dsdatum.institution_code %>
+    <%= form.text_field :institutionCode, value: dsdatum.institutionCode %>
   </div>
 
   <div class="field">
     <%= form.label :collection_code %>
-    <%= form.text_field :collection_code, value: dsdatum.collection_code %>
+    <%= form.text_field :collectionCode, value: dsdatum.collectionCode %>
   </div>
 
   <div class="field">
     <%= form.label :stable_identifier %>
-    <%= form.text_field :stable_identifier, value: dsdatum.stable_identifier %>
+    <%= form.text_field :stableIdentifier, value: dsdatum.stableIdentifier %>
   </div>
 
   <div class="field">
     <%= form.label :physical_specimen_id %>
-    <%= form.text_field :physical_specimen_id, value: dsdatum.physical_specimen_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :determinations %>
-    <%= form.text_field :determinations, value: dsdatum.determinations %>
+    <%= form.text_field :physicalSpecimenId, value: dsdatum.physicalSpecimenId %>
   </div>
 
   <div class="field">
     <%= form.label :cat_of_life_reference %>
-    <%= form.text_field :cat_of_life_reference, value: dsdatum.cat_of_life_reference %>
+    <%= form.text_field :catOfLifeReference, value: dsdatum.catOfLifeReference %>
   </div>
 
   <div class="field">
     <%= form.label :image_id %>
-    <%= form.text_field :image_id, value: dsdatum.image_id %>
+    <%= form.text_field :imageID, value: dsdatum.imageID %>
   </div>
 
   <div class="actions">

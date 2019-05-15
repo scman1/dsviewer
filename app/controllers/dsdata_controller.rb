@@ -56,7 +56,7 @@ class DsdataController < ApplicationController
     puts("*****************GET /dsdata/1/edit*****************")
     puts(params)
     puts(@dsdatum.id)
-    puts(@dsdatum.new_record?)
+    #puts(@dsdatum.new_record?)
     puts("****************************************************")
   end
 
