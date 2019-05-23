@@ -13,7 +13,7 @@ require './lib/cordra_rest_client'
 list_ds=CordraRestClient::DigitalObject.search("Digital Specimen",0, 10)
 
 #get DS schema
-result=CordraRestClient::DigitalObject.get_schema("Digital Specimen".gsub(" ","%20"))
+result=CordraRestClient::DigitalObject.get_schema("DigitalSpecimen")
 do_schema = JSON.parse(result.body)
 # create a new class for the DS from the schema
 do_properties = do_schema["properties"].keys
