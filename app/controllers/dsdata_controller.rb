@@ -16,9 +16,9 @@ class DsdataController < ApplicationController
     end    
     puts("*****************GET /dsdata*****************")
     # get DS list from CORDRA
-    list_ds = CordraRestClient::DigitalObject.search("Digital Specimen",num_page, items)
+    list_ds = CordraRestClient::DigitalObject.search("DigitalSpecimen",num_page, items)
     # get DS schema from CORDRA
-    result=CordraRestClient::DigitalObject.get_schema("Digital Specimen".gsub(" ","%20"))
+    result=CordraRestClient::DigitalObject.get_schema("DigitalSpecimen".gsub(" ","%20"))
     do_schema = JSON.parse(result.body)
     # create a new class for the DS from the schema
     do_properties = do_schema["properties"].keys
