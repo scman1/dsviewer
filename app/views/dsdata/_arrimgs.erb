@@ -1,0 +1,28 @@
+<% if  not field_value.nil? %>
+  <p>
+    <strong><%= field_title %>:</strong>
+    <table>
+    <tr>
+      <th>Image</th>
+      <th>Properties</th>
+    </tr>
+
+    <% field_value.each do |img_det| %>
+      <% img_uri = "" %>
+      <% img_capt = "" %>
+      <% img_det.each do  |img_itm| %>
+        <% if img_itm =~ URI::regexp %>
+	  <% img_uri = img_itm %>
+	<% else %>
+	  <% img_capt += img_itm + "<br/>" %>
+	<% end %>
+      <% end %>
+      
+      <tr>
+        <td> <%= link_to image_tag(img_uri, width: "90"), img_uri %> </td>
+	<td> <%= simple_format(img_capt) %> </td>
+      </tr>
+      <% end %>
+    </table> 
+  </p>
+<% end %>

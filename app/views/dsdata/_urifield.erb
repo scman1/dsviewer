@@ -1,0 +1,10 @@
+<% if  not field_value.nil? %>
+  <p>
+    <strong><%= field_title %>:</strong>
+    <% if field_value =~ URI::regexp %>
+      <%= link_to nil, field_value %>
+    <% else %>
+      <%= field_value %>
+    <% end %>
+  </p>
+<% end %>
