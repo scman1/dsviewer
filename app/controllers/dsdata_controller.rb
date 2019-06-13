@@ -17,6 +17,9 @@ class DsdataController < ApplicationController
     puts("*****************GET /dsdata*****************")
     # get DS list from CORDRA
     list_ds = CordraRestClient::DigitalObject.search("DigitalSpecimen",num_page, items)
+    puts list_ds
+    list_ds["results"].sort!{|x,y| x["content"]["scientificName"] <=> y["content"]["scientificName"] }
+
     # get DS schema from CORDRA
     result=CordraRestClient::DigitalObject.get_schema("DigitalSpecimen")
     do_schema = JSON.parse(result.body)
@@ -29,13 +32,15 @@ class DsdataController < ApplicationController
     list_ds["results"].each do |ds|
       new_ds = ds_class.new 
       ds_data = ds["content"]
-      CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, ds_data
-      ds_return.push(new_ds)
+      if ! (ds_data["id"]=="")
+        CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, ds_data
+	ds_return.push(new_ds)
+      end
     end
     #end
     @dsdata = ds_return
     puts("*****************GET /dsobj*****************")
-    puts @dsdata 
+    puts @dsdata
     puts("*****************GET /dsobj*****************")
   end
 
