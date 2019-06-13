@@ -17,9 +17,8 @@ class DsdataController < ApplicationController
     puts("*****************GET /dsdata*****************")
     # get DS list from CORDRA
     list_ds = CordraRestClient::DigitalObject.search("DigitalSpecimen",num_page, items)
-    puts list_ds
     list_ds["results"].sort!{|x,y| x["content"]["scientificName"] <=> y["content"]["scientificName"] }
-
+    
     # get DS schema from CORDRA
     result=CordraRestClient::DigitalObject.get_schema("DigitalSpecimen")
     do_schema = JSON.parse(result.body)
