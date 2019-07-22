@@ -16,26 +16,30 @@ class DsdataController < ApplicationController
     end    
     puts("*****************GET /dsdata*****************")
     # get DS list from CORDRA
-    list_ds = CordraRestClient::DigitalObject.search("Digital Specimen",num_page, items)
+    list_ds = CordraRestClient::DigitalObject.search("DigitalSpecimen",num_page, items)
+    list_ds["results"].sort!{|x,y| x["content"]["scientificName"] <=> y["content"]["scientificName"] }
+    
     # get DS schema from CORDRA
-    result=CordraRestClient::DigitalObject.get_schema("Digital Specimen".gsub(" ","%20"))
+    result=CordraRestClient::DigitalObject.get_schema("DigitalSpecimen")
     do_schema = JSON.parse(result.body)
     # create a new class for the DS from the schema
     do_properties = do_schema["properties"].keys
-    ds_class = CordraRestClient::DigitalObjectFactory.create_class "Digital Specimen".gsub(" ",""), do_properties 
+    ds_class = CordraRestClient::DigitalObjectFactory.create_class "DigitalSpecimen", do_properties 
     # convert each of the results into a DS object and 
     # build a list of DS objects
     ds_return=[] 
     list_ds["results"].each do |ds|
       new_ds = ds_class.new 
       ds_data = ds["content"]
-      CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, ds_data
-      ds_return.push(new_ds)
+      if ! (ds_data["id"]=="")
+        CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, ds_data
+	ds_return.push(new_ds)
+      end
     end
     #end
     @dsdata = ds_return
     puts("*****************GET /dsobj*****************")
-    puts @dsdata 
+    puts @dsdata
     puts("*****************GET /dsobj*****************")
   end
 
@@ -125,11 +129,11 @@ class DsdataController < ApplicationController
 	puts cdo.type
 	# B. get schema
 	#     The schema will be used to build a DO class dinamically
-	result=CordraRestClient::DigitalObject.get_schema(cdo.type.gsub(" ","%20"))
-	do_schema = JSON.parse(result.body)
+	result=CordraRestClient::DigitalObject.get_schema(cdo.type)
+	@do_schema = JSON.parse(result.body)
 	# C. build new class using schema
-	do_properties = do_schema["properties"].keys
-	do_c = CordraRestClient::DigitalObjectFactory.create_class cdo.type.gsub(" ",""), do_properties 
+	@do_properties = @do_schema["properties"].keys
+	do_c = CordraRestClient::DigitalObjectFactory.create_class cdo.type, @do_properties 
 	new_ds = do_c.new
 	# the DO contents are a hash
 	# assing object values in content to class
@@ -137,10 +141,14 @@ class DsdataController < ApplicationController
 	
         
         @dsdatum = new_ds
+	
         puts("*****************set_dsdatum************************")
         puts(@dsdatum)
+	puts(@do_properties)
+	puts(@do_schema["properties"])
         #@dsdatum.ds_id = @dsdatum.ds_id.split('/')[1]
         puts(@dsdatum.id)
+	
         puts("****************************************************")
     end
 
