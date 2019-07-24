@@ -1,7 +1,0 @@
-<h1>Editing Dsdatum</h1>
-
-<%= render 'form', dsdatum: @dsdatum %>
- <% @id=@dsdatum.id.split("/")[1] %>
-<%= link_to 'Show', {:controller => 'dsdata',
-              :action => 'show', :id =>@id}, :class => "btn btn-primary btn-xs"  %> |
-<%= link_to 'Back', dsdata_path, :class => "btn btn-info btn-xs" %>

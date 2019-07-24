@@ -1,2 +1,0 @@
-json.extract! dsdatum, :id, :ds_id, :creation_datetime, :creator, :mids_level, :scientific_name, :common_name, :country, :locality, :recorded_by, :collection_date, :catalog_number, :other_catalog_numbers, :institution_code, :collection_code, :stable_identifier, :physical_specimen_id, :determinations, :cat_of_life_reference, :image_id, :created_at, :updated_at
-json.url dsdatum_url(dsdatum, format: :json)
