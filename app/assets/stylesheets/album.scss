@@ -16,8 +16,7 @@
 }
 
 .jumbotron-heading {
-  font-weight: 28px;
-  color: #205692;
+  font-weight: semi-bold;
 }
 
 .jumbotron .container {
@@ -92,3 +91,34 @@ footer p {
 body {
    font-family: 'Open Sans', serif;
 } 
+
+h2 {
+  color: #205692;
+  font-family: 'Titillium Web', serif;
+  font-weight: semi-bold;
+  font-size: 28px;
+}
+
+h3, h4 {
+  font-family: 'Open Sans', serif;
+  font-weight: semi-bold;
+  font-size: 20px;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus { 
+    background-color: #ffd85d; 
+    border-color: #ffd85d; 
+}
+
+btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:visited,
+.btn-secondary:focus { 
+    background-color: #d9d9df; 
+    border-color: #d9d9df; 
+}
