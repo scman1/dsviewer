@@ -65,4 +65,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'cordra_rest_client', :git => 'https://github.com/scman1/cordra_client.git'
 gem 'faraday'
 
+# bootstrap gems
 gem 'bootstrap'
+gem 'jquery-rails'
