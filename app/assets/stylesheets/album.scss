@@ -105,6 +105,11 @@ h3, h4 {
   font-size: 20px;
 }
 
+.card-text {
+  font-family: 'Open Sans', serif;
+  font-size: 16px;
+}
+
 .btn-primary,
 .btn-primary:hover,
 .btn-primary:active,
@@ -114,7 +119,7 @@ h3, h4 {
     border-color: #ffd85d; 
 }
 
-btn-secondary,
+.btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:active,
 .btn-secondary:visited,
@@ -122,3 +127,4 @@ btn-secondary,
     background-color: #d9d9df; 
     border-color: #d9d9df; 
 }
+

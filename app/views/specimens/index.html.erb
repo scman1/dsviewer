@@ -13,9 +13,10 @@
         <div class="container">
           <div class="row">
 	    <% @dsdata.each do |dsdatum| %>
-	      <% @id=dsdatum.id.split("/")[1] %>
-	      <% @scientificName = dsdatum.scientificName %>
-   	      <% @countryName = dsdatum.country %>
+	      <% @id=dsdatum.id.split("/")[1] 
+	            @scientificName = dsdatum.scientificName 
+   	            @countryName = dsdatum.country 
+		    @img_uri = nil %>
 	      <% if !dsdatum.other_Keywords.nil? 
 	              string_ok = dsdatum.other_Keywords 
 	              json_ok = JSON.parse(string_ok)
@@ -36,10 +37,10 @@
 			  puts @img_uri
 			end
                       end
-		    elsif !@img_uri.nil?
-		      @img_uri = @preservation
-	            end%> 
-		    
+	            end %> 
+		<% if @img_uri.nil?
+		        @img_uri = 'ds_default_03.png'
+		      end %>   
 	      <% if !@id.nil? %>
 		<%= render partial: 'specimen_card' , locals: {specimen_id: @id, scientific_name: @scientificName, specimen_origin:  @countryName, collection_group: @collection_group, preservation: @preservation, img_uri: @img_uri } %>
 	      <% end %>
