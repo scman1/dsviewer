@@ -1,10 +1,10 @@
 		<div class="col-md-4">
 			<div class="card mb-4 shadow-sm">
 				<div class='img-container3'>
-					<img class='resize_fit_center3' src=img_uri>
+					<img class='resize_fit_center3' src=<%= image_url('ds_default_03.png') %> >
 				</div>
 				<div class="card-body">
-					<p class="card-text"> <b>Scientific name: </b><%= scientific_name %>  <br/> <b>ID:</b><%= specimen_id %> . <br/> <b>Origin: </b><%= specimen_origin %>.</p>
+					<p class="card-text"> <b>Scientific name: </b><%= scientific_name %> <b>ID:</b><%= specimen_id %> . <b>Origin: </b><%= specimen_origin %>.</p>
 					<div class="d-flex justify-content-between align-items-center">
 						<div class="btn-group">
 							<%= link_to 'Show', {:controller => 'specimens', :action => 'show', :id =>specimen_id}, :class => "btn btn-primary" %> 
