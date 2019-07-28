@@ -34,12 +34,22 @@
 			end
 			if !@img_uri.nil?
 			  break
-			  puts @img_uri
 			end
                       end
 	            end %> 
 		<% if @img_uri.nil?
-		        @img_uri = 'ds_default_03.png'
+		         if  !@collection_group.nil?
+			   case @collection_group
+			     when "skins and vertebrate materials"
+			       @img_uri = 'svs_icon.png'
+			     when "liquid samples"
+			       @img_uri = 'lps_icon.png'
+			     else
+			       @img_uri = 'ds_default_03.png'
+			   end
+			 else
+			   @img_uri = 'ds_default_03.png'
+			 end
 		      end %>   
 	      <% if !@id.nil? %>
 		<%= render partial: 'specimen_card' , locals: {specimen_id: @id, scientific_name: @scientificName, specimen_origin:  @countryName, collection_group: @collection_group, preservation: @preservation, img_uri: @img_uri } %>
