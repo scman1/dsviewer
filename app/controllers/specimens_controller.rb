@@ -16,22 +16,28 @@ class SpecimensController < ApplicationController
     end    
     puts("*****************GET /dsdata*****************")
     # get DS list from CORDRA
-    list_ds = CordraRestClient::DigitalObject.search("DigitalSpecimen",num_page, items)
-    # get DS schema from CORDRA
-    result=CordraRestClient::DigitalObject.get_schema("DigitalSpecimen")
-    do_schema = JSON.parse(result.body)
-    # create a new class for the DS from the schema
-    do_properties = do_schema["properties"].keys
-    ds_class = CordraRestClient::DigitalObjectFactory.create_class "DigitalSpecimen", do_properties 
-    # convert each of the results into a DS object and 
-    # build a list of DS objects
-    ds_return=[] 
-    list_ds["results"].each do |ds|
-      new_ds = ds_class.new 
-      ds_data = ds["content"]
-      CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, ds_data
-      ds_return.push(new_ds)
+    begin
+      list_ds = CordraRestClient::DigitalObject.search("DigitalSpecimen",num_page, items)
+      # get DS schema from CORDRA
+      result=CordraRestClient::DigitalObject.get_schema("DigitalSpecimen")
+      do_schema = JSON.parse(result.body)
+      # create a new class for the DS from the schema
+      do_properties = do_schema["properties"].keys
+      ds_class = CordraRestClient::DigitalObjectFactory.create_class "DigitalSpecimen", do_properties 
+      # convert each of the results into a DS object and 
+      # build a list of DS objects
+      ds_return=[] 
+      list_ds["results"].each do |ds|
+        new_ds = ds_class.new 
+        ds_data = ds["content"]
+        CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, ds_data
+        ds_return.push(new_ds)
+       end
+   rescue Faraday::ConnectionFailed => e
+        ds_return=[] 
+	print e
     end
+
     #end
     @dsdata = ds_return
     puts("*****************GET /dsobj*****************")
