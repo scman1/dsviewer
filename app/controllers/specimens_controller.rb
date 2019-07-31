@@ -123,26 +123,37 @@ class SpecimensController < ApplicationController
     include CordraRestClient
     # Use callbacks to share common setup or constraints between actions.
     def set_specimen
+	    
 	# A. get digital object
-	cdo = CordraRestClient::DigitalObject.find("20.5000.1025/#{params[:id]}")
-	# Check object id and type 
-	puts cdo.id
-	puts cdo.type
-	# B. get schema
-	#     The schema will be used to build a DO class dinamically
-	result=CordraRestClient::DigitalObject.get_schema(cdo.type)
-	@do_schema = JSON.parse(result.body)
-	# C. build new class using schema
-	@do_properties = @do_schema["properties"].keys
-	do_c = CordraRestClient::DigitalObjectFactory.create_class cdo.type, @do_properties 
-	new_ds = do_c.new
-	# the DO contents are a hash
-	# assing object values in content to class
-	CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, cdo.content			
-	
-        
-        @dsdatum = new_ds
-	
+	begin
+		cdo = CordraRestClient::DigitalObject.find("20.5000.1025/#{params[:id]}")
+		# Check object id and type 
+		puts cdo.id
+		puts cdo.type
+		# B. get schema
+		#     The schema will be used to build a DO class dinamically
+		result=CordraRestClient::DigitalObject.get_schema(cdo.type)
+		@do_schema = JSON.parse(result.body)
+		# C. build new class using schema
+		@do_properties = @do_schema["properties"].keys
+		do_c = CordraRestClient::DigitalObjectFactory.create_class cdo.type, @do_properties 
+		new_ds = do_c.new
+		# the DO contents are a hash
+		# assing object values in content to class
+		CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, cdo.content			
+		@dsdatum = new_ds
+	rescue
+		cdo = helpers.load_data_json('ds_single.json')
+		puts cdo["content"]
+		@do_schema = helpers.load_data_json('ds_schema.json')
+		@do_properties = @do_schema["properties"].keys
+		puts @properties
+		do_c = CordraRestClient::DigitalObjectFactory.create_class "DigitalSpecimen", @do_properties 
+		new_ds = do_c.new
+		CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, cdo["content"]			
+		@dsdatum = new_ds
+        end                	
+
         puts("*****************set_specimen************************")
         puts(@dsdatum)
 	puts(@do_properties)
