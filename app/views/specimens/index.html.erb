@@ -16,8 +16,10 @@
 	      <% @id=dsdatum.id.split("/")[1] 
 	            @scientificName = dsdatum.scientificName 
    	            @countryName = dsdatum.country 
-		    @img_uri = nil %>
-	      <% if !dsdatum.other_Keywords.nil? 
+		    @img_uri = nil 
+		    @collection_group=nil
+		    @preservation=nil
+	            if !dsdatum.other_Keywords.nil? 
 	              string_ok = dsdatum.other_Keywords 
 	              json_ok = JSON.parse(string_ok)
 		      @collection_group = json_ok["collectiongroup"]
