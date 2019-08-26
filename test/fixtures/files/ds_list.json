@@ -1,0 +1,98 @@
+{
+	"size":6,
+	"pageNum":0,
+	"pageSize":10,
+	"results":[
+		{
+			"id":"20.5000.1025/B100003484",
+			"type":"Digital Specimen",
+			"content":{
+				"id":"20.5000.1025/B100003484",
+				"creator":"20.5000.1025/60c6d277a8bd81de7fdd",
+				"midslevel":2,
+				"scientificName":"Agathis palmerstonii (F.Muell.)",
+				"country":"Australia",
+				"locality":"Queensland",
+				"decimalLat/Long":[],
+				"recordedBy":"F.M.Bailey",
+				"collectionDate":"1932-04-08",
+				"catalogNumber":"B 10 0003484",
+				"otherCatalogNumbers":"",
+				"institutionCode":"B",
+				"collectionCode":"Australia:Queensland",
+				"stableIdentifier":"http://herbarium.bgbm.org/object/B100003484",
+				"physicalSpecimenId":"B 10 0003484",
+				"Determinations":"Yes",
+				"other_Keywords":"{\"collectiongroup\":\"herbarium sheet\",\"preservation\":\"dry specimen\",\"sample\":\"Leaves and stems\",\"completness\":\"partial\"}",
+				"availableImages":[["BGBM","JPEG","442X700","BGBM","CC-BY SA","https://mediastorage.bgbm.org/fsi/server?type=image&source=B/10/00/03/48/B_10_0003484.tif&width=490&height=700"]]
+				},
+			"metadata":{
+				"createdOn":1556103411020,
+				"createdBy":"20.5000.1025/60c6d277a8bd81de7fdd",
+				"modifiedOn":1556103411020,
+				"modifiedBy":"20.5000.1025/60c6d277a8bd81de7fdd",
+				"txnId":13
+				}
+			},
+		{
+			"id":"20.5000.1025/LC.14385", 
+			"type":"Digital Specimen", 
+			"content":{
+				"id":"20.5000.1025/LC.14385", "creator":"20.5000.1025/60c6d277a8bd81de7fdd", "midslevel":2, "scientificName":"Salmo trutta Linnaeus, 1758", "country":"Finland", "locality":" Keski-SuomiSouth Häme (EH) Kuhmoinen Päijänne", "decimalLat/Long":[61.7141, 25.4828], "recordedBy":"Vanhatalo, Jouko", "collectionDate":"2015-02-27", "catalogNumber":"1268/2015", "otherCatalogNumbers":"https://laji.fi/en/view?uri=http:%2F%2Ftun.fi%2FLC.14385", "institutionCode":"JYV", "collectionCode":"Fish collections", "stableIdentifier":"http://tun.fi/LC.14385", "physicalSpecimenId":"verkko55", "Determinations":"Yes",
+				"other_Keywords":"{\"collectiongroup\":\"skins and vertebrate materials\",\"preservation\":\"dry specimen\",\"sample\":\"fish scales\",\"completness\":\"partial\"}"
+				}, 
+			"metadata":{
+				"createdOn":1556104031771, "createdBy":"20.5000.1025/60c6d277a8bd81de7fdd", "modifiedOn":1556104031771, "modifiedBy":"20.5000.1025/60c6d277a8bd81de7fdd", "txnId":16}
+		},
+		{
+			"id":"20.5000.1025/NHMUK8581566", 
+			"type":"Digital Specimen", 
+			"content":{
+				"id":"20.5000.1025/NHMUK8581566", 
+				"creator":"20.5000.1025/60c6d277a8bd81de7fdd", 
+				"midslevel":2, 
+				"scientificName":"Salmo trutta Linnaeus, 1758", 
+				"country":"United Kingdom", 
+				"locality":"Bugeilyn", 
+				"decimalLat/Long":[52.5155611, -3.741357], 
+				"recordedBy":"Jon Beer", 
+				"collectionDate":"2017-09-09", 
+				"catalogNumber":"2018.9.4.12-13", 
+				"otherCatalogNumbers":"NHMUK:ecatalogue:8581566", 
+				"institutionCode":"NHMUK", 
+				"collectionCode":"ZOO", 
+				"stableIdentifier":"http://data.nhm.ac.uk/object/3c053a16-14f5-4b27-8e0d-fda32e96ec3a", 
+				"physicalSpecimenId":"2018.9.4.12-13", "Determinations":"Yes",
+				"other_Keywords":"{\"collectiongroup\":\"liquid samples\",\"preservation\":\"liquid preserved\",\"sample\":\"whole individual\",\"completness\":\"whole\",\"individualcount\":2}",
+				"availableImages":[["BGBM","JPEG","442X700","BGBM","CC-BY SA","https://www.nhm.ac.uk/services/media-store/asset/3bcb2ff54318873a1c2de16fefe91436365fde11/contents/preview"]]}, 
+			"metadata":{"createdOn":1556104016899, 
+				"createdBy":"20.5000.1025/60c6d277a8bd81de7fdd", 
+				"modifiedOn":1556104016899, 
+				"modifiedBy":"20.5000.1025/60c6d277a8bd81de7fdd", "txnId":15
+				}
+			},
+		{
+			"id":"20.5000.1025/RMNH.RENA.38646", "type":"Digital Specimen", 
+			"content":{"id":"20.5000.1025/RMNH.RENA.38646", "creator":"20.5000.1025/1517d545cc11283e2360", "midslevel":2, "scientificName":"Lissotriton vulgaris (Linnaeus, 1758)", "commonName":"Smooth newt", "country":"Netherlands", "locality":"Zuid-Holland, Voorschoten", "decimalLat/Long":[], "recordedBy":"R. de Ruiter", "collectionDate":"2008-09-02", "catalogNumber":"RMNH.RENA.38646", "otherCatalogNumbers":"", "institutionCode":"RMNH", "collectionCode":"Amphibia and Reptilia", "stableIdentifier":"http://data.biodiversitydata.nl/naturalis/specimen/RMNH.RENA.38646", "physicalSpecimenId":"RMNH.RENA.38646", "identifier":"20.5000.1025/RMNH.RENA.38646"}, 
+			"metadata":{"createdOn":1556107792482, "createdBy":"20.5000.1025/1517d545cc11283e2360", "modifiedOn":1556107792482, "modifiedBy":"20.5000.1025/1517d545cc11283e2360", "txnId":17}},
+		{
+			"id":"20.5000.1025/KS.1197", 
+			"type":"Digital Specimen", 
+			"content":
+				{
+					"id":"20.5000.1025/KS.1197", "creator":"20.5000.1025/60c6d277a8bd81de7fdd", "midslevel":2, "scientificName":"Salmo trutta", "country":"Finland", "locality":"Uusimaa (U),Inkoo", "decimalLat/Long":[59.746793, 23.77987], "recordedBy":"Nurminen, Katariina", "collectionDate":"2002-11-14", "catalogNumber":"2636", "otherCatalogNumbers":"KK2827", "institutionCode":"MZH", "collectionCode":"Luomus - Pisces", "stableIdentifier":"http://id.luomus.fi/KS.1197", "physicalSpecimenId":"KS.1197", "Determinations":"Yes",
+					"other_Keywords":"{\"collectiongroup\":\"liquid samples\",\"preservation\":\"liquid preserved\",\"sample\":\"whole individual\",\"completness\":\"whole\"}"
+				}, 
+			"metadata":{"createdOn":1556103671332, "createdBy":"20.5000.1025/60c6d277a8bd81de7fdd", "modifiedOn":1556103671332, "modifiedBy":"20.5000.1025/60c6d277a8bd81de7fdd", "txnId":14}},
+		{
+			"id":"20.5000.1025/32d62db795137d84cf83", "type":"Digital Specimen", 
+			"content":
+				{
+					"id":"20.5000.1025/32d62db795137d84cf83", "creator":"20.5000.1025/60c6d277a8bd81de7fdd", "midslevel":1, "scientificName":"Agathis palmerstonii (F.Muell.) F.M.Bailey", "country":"", "locality":"", "decimalLat/Long":[], "recordedBy":"Unknown", "collectionDate":"", "catalogNumber":"L.1050012", "otherCatalogNumbers":"", "institutionCode":"ZZ", "collectionCode":"Botany", "stableIdentifier":"http://data.biodiversitydata.nl/naturalis/specimen/L.1050012", "physicalSpecimenId":"L.1050012", "Determinations":"Yes", "gbifId":"https://www.gbif.org/occurrence/1900736519",
+					"other_Keywords":"{\"collectiongroup\":\"microscope slides\",\"preservation\":\"dry specimen\",\"sample\":\"wood cuts\",\"completness\":\"partial\"}",
+					"availableImages":[["BGBM","JPEG","442X700","BGBM","CC-BY SA","https://medialib.naturalis.nl/file/id/L.1050012/format/large"]]
+				}, 
+			"metadata":{"createdOn":1556109003294, "createdBy":"20.5000.1025/60c6d277a8bd81de7fdd", "modifiedOn":1556109003294, "modifiedBy":"20.5000.1025/60c6d277a8bd81de7fdd", "txnId":18}}
+	]
+}	
+		

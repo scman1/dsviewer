@@ -1,0 +1,12 @@
+$ bundle exec cap install STAGES=production
+#output from command above:
+mkdir -p config/deploy
+create config/deploy.rb
+create config/deploy/production.rb
+mkdir -p lib/capistrano/tasks
+create Capfile
+Capified
+
+# These files can be added to the repository before configuration. 
+# After configuration they should be kept only on development machine and not 
+# checked to github

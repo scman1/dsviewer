@@ -1,38 +1,23 @@
-<!-- app/views/layouts/application.html.erb -->
-
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DS Explorer . ICEDIG</title>
-    <link rel="shortcut icon" href="https://icedig.eu/sites/all/themes/nictitate/favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>DS Explorer &middot; ICEDIG</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
+    <%= favicon_link_tag asset_path('https://icedig.eu/sites/all/themes/nictitate/favicon.ico') %>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
   </head>
   <body>
     <header>
       <%= render 'shared/navigation' %>
-    </header> 
-    <%= yield %>
+    </header>
+    <main role="main">
+      <%= yield %>
+    </main>
     <%= render 'shared/footer' %>
   </body>
-
 </html>
-

@@ -1,0 +1,130 @@
+.jumbotron {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-bottom: 0;
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: semi-bold;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+footer {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+
+.img-container {
+    margin: auto;
+    width: 348px;
+    height: 150px;
+    text-align: center;
+    border: 1px solid red;
+}
+.resize_fit_center {
+    top: 50%;
+    left: 50%;
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+}
+
+.img-container2 {
+  width: 80%;
+  height: 80%;
+  margin:auto;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color: #aaa;
+}
+
+.resize_fit_center2 {
+  max-width: 100%;
+  max-height: 100%;  
+  margin:auto;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+.img-container3 {
+  width: 100%;
+  height: 100%;
+  margin:auto;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color: #aaa;
+  object-fit: contain  
+}
+
+.resize_fit_center3 {
+  max-height: 180px;
+  max-width:100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+   font-family: 'Open Sans', serif;
+} 
+
+h2 {
+  color: #205692;
+  font-family: 'Titillium Web', serif;
+  font-weight: semi-bold;
+  font-size: 28px;
+}
+
+h3, h4 {
+  font-family: 'Open Sans', serif;
+  font-weight: semi-bold;
+  font-size: 20px;
+}
+
+.card-text {
+  font-family: 'Open Sans', serif;
+  font-size: 14px;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus { 
+    background-color: #ffd85d; 
+    border-color: #ffd85d; 
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:visited,
+.btn-secondary:focus { 
+    background-color: #d9d9df; 
+    border-color: #d9d9df; 
+}
+

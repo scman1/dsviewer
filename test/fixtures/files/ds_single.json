@@ -1,0 +1,31 @@
+{
+	"id":"20.5000.1025/B100003484",
+	"type":"Digital Specimen",
+	"content":{
+		"id":"20.5000.1025/B100003484",
+		"creator":"20.5000.1025/60c6d277a8bd81de7fdd",
+		"midslevel":2,
+		"scientificName":"Agathis palmerstonii (F.Muell.)",
+		"country":"Australia",
+		"locality":"Queensland",
+		"decimalLat/Long":[],
+		"recordedBy":"F.M.Bailey",
+		"collectionDate":"1932-04-08",
+		"catalogNumber":"B 10 0003484",
+		"otherCatalogNumbers":"",
+		"institutionCode":"B",
+		"collectionCode":"Australia:Queensland",
+		"stableIdentifier":"http://herbarium.bgbm.org/object/B100003484",
+		"physicalSpecimenId":"B 10 0003484",
+		"Determinations":"Yes",
+		"availableImages":[["BGBM","JPEG","442X700","BGBM","CC-BY SA","https://mediastorage.bgbm.org/fsi/server?type=image&source=B/10/00/03/48/B_10_0003484.tif&width=490&height=700"]]
+		},
+	"metadata":{
+		"createdOn":1556103411020,
+		"createdBy":"20.5000.1025/60c6d277a8bd81de7fdd",
+		"modifiedOn":1556103411020,
+		"modifiedBy":"20.5000.1025/60c6d277a8bd81de7fdd",
+		"txnId":13
+		}
+}
+		

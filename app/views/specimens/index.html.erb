@@ -1,0 +1,62 @@
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h2 class="jumbotron-heading">Album View</h2>
+          <p class="lead text-muted">A view centered on the visual elements of digital specimens.</p>
+          <p>
+            <a href="#" class="btn btn-primary my-2">Add Specimen</a>
+            <a href="#" class="btn btn-secondary my-2">List by category</a>
+          </p>
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+	    <% @dsdata.each do |dsdatum| %>
+	      <% @id=dsdatum.id.split("/")[1] 
+	            @scientificName = dsdatum.scientificName 
+   	            @countryName = dsdatum.country 
+		    @img_uri = nil 
+		    @collection_group=nil
+		    @preservation=nil
+	            if !dsdatum.other_Keywords.nil? 
+	              string_ok = dsdatum.other_Keywords 
+	              json_ok = JSON.parse(string_ok)
+		      @collection_group = json_ok["collectiongroup"]
+                      @preservation = json_ok["preservation"] 	
+		    end %>
+	      <% if !dsdatum.availableImages.nil? 
+	              images = dsdatum.availableImages
+		      images.each do |img_data|
+                        img_data.each do |value|
+                          if value =~ URI::regexp
+			    @img_uri = value
+			    break
+                          end
+			end
+			if !@img_uri.nil?
+			  break
+			end
+                      end
+	            end %> 
+		<% if @img_uri.nil?
+		         if  !@collection_group.nil?
+			   case @collection_group
+			     when "skins and vertebrate materials"
+			       @img_uri = 'svs_icon.png'
+			     when "liquid samples"
+			       @img_uri = 'lps_icon.png'
+			     else
+			       @img_uri = 'ds_default_03.png'
+			   end
+			 else
+			   @img_uri = 'ds_default_03.png'
+			 end
+		      end %>   
+	      <% if !@id.nil? %>
+		<%= render partial: 'specimen_card' , locals: {specimen_id: @id, scientific_name: @scientificName, specimen_origin:  @countryName, collection_group: @collection_group, preservation: @preservation, img_uri: @img_uri } %>
+	      <% end %>
+	    <% end %>
+          </div><!--row-->
+        </div><!--container-->
+      </div><!--class album py-5 bg-light -->
