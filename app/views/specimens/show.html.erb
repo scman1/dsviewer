@@ -40,7 +40,7 @@
 		      <div class="card-header" id="headingOne">
 			<h5 class="mb-0">
 			  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-			    <img src="images/mids0.png" width="40" alt="0 (Catalogue)"/> Catalogue Data
+			    <%=image_tag("mids0.png", alt: "(Level 0)", width: "60")%> Catalogue Data
 			  </button>
 			</h5>
 		      </div>
@@ -59,7 +59,7 @@
 			<div class="card-header" id="headingTwo">
 			  <h5 class="mb-0">
 			    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-			       <img src="images/mids1.png" width="40" alt="2 (Basic)"/> Basic Data
+			       <%=image_tag("mids1.png", alt: "(Level 1)", width: "60")%> Basic Data
 			    </button>
 			  </h5>
 			</div>
@@ -79,13 +79,13 @@
 			<div class="card-header" id="headingThree">
 			  <h5 class="mb-0">
 			    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-			      <img src="images/mids2.png" width="40" alt="2 (Key)"/> Regular Data
+			      <%=image_tag("mids2.png", alt: "(Level 2)", width: "60")%> Regular Data
 			    </button>
 			  </h5>
 			</div>
 			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
 			  <div class="card-body">
-			    <p><b>Geo Location: </b><%= @dsdatum.decimalLat_Long %></p>
+			    <p><b>Geo Location: </b><%= @dsdatum.decimalLatLong %></p>
 			    <p><b>Collected by: </b><%= @dsdatum.recordedBy %></p>
 			    <p><b>Collection date: </b><%= @dsdatum.collectionDate %></p>
 			    <p><b>Collection Code: </b><%= @dsdatum.collectionCode %></p>
@@ -96,7 +96,7 @@
 			<div class="card-header" id="headingFour">
 			  <h5 class="mb-0">
 			    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-			      <img src="images/mids3.png" width="40" alt="3 (Extended)"/> Extended Data
+			      <%=image_tag("mids3.png", alt: "(Level 3)", width: "60")%>  Extended Data
 			    </button>
 			  </h5>
 			</div>
