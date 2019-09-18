@@ -1,36 +1,4 @@
 <div class = "container">
-	<p id="notice"><%= notice %></p>
-	  <% @do_schema["properties"].each do |field|  %>
-	      <% field_name = field[0].gsub('/','_') %>
-	      <% field_name = field_name.gsub(' ','_') %>
-	      <% field_title = field[1]["title"].to_s %>
-	      <% field_format = field[1]["format"].to_s %>
-	      <% if field_title == "" %>
-		<%  field_title = field[0] %>
-	      <% end %>
-	      <% field_name = "@" + field_name %>
-	      <% f_value = @dsdatum.instance_variable_get(field_name .to_sym) %>
-	      <% if field[1]["type"] == "string" && (field[1]["format"] == "uri" || field[1]["format"] == "handle") %>
-		  <%= render partial: 'urifield', locals: {field_title: field_title, field_value: f_value} %> 
-	      <% elsif field[1]["type"] == "string" %>
-		  <%= render partial: 'strfield', locals: {field_title: field_title, field_value: f_value} %> 
-	      <% elsif field[1]["type"] == "integer" %>
-		  <%= render partial: 'intfield', locals: {field_title: field_title, field_value: f_value} %> 
-	      <% elsif field[1]["type"] == "array" && field_title.include?("images") %>
-		  <%= render partial: 'arrimgs', locals: {field_title: field_title, field_value: f_value} %> 
-	      <% elsif field[1]["type"] == "array" && field_title.include?("Long") %>
-		  <%= render partial: 'strfield', locals: {field_title: field_title, field_value: f_value} %>
-	      <% elsif field[1]["type"] == "array" && field_title.include?("pages") %>
-		  <%= render partial: 'strfield', locals: {field_title: field_title, field_value: f_value} %>
-	      <% else %>
-		  <p><%= field[1] %></p>
-	      <% end %>
-	  <% end %>
-	</p>
-	<%= link_to 'back', specimens_path, :class => "btn btn-primary btn-xs" %>
-</div>
-
-<div class = "container">
 	<div class = "row">
 		<div class = "col-md-7">
 		  <p class="specimendetails text-center" >Digital Specimen</p>
@@ -44,16 +12,7 @@
 			  </button>
 			</h5>
 		      </div>
-		      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-			<div class="card-body">
-			  <p><b>Identifier:</b> <%= @dsdatum.id %></p>
-			  <p><b>Created:</b> <%= @dsdatum.id %> </p>
-			  <p><b>Creator:</b> <%= @dsdatum.creator %> </p>
-			  <p><b>MIDS:</b> <%= @dsdatum.midslevel %> </p>
-			  <p><b>Physical Specimen ID:</b> <%= @dsdatum.physicalSpecimenId %></p>
-			  <p><b>Institution Code: </b><%= @dsdatum.institutionCode %></p>
-			</div>
-		       </div>
+		      <%= render partial: 'cardone', locals: {dsdatum: @dsdatum, schema: @do_schema} %> 
 		      </div>
 		      <div class="card">
 			<div class="card-header" id="headingTwo">
@@ -63,17 +22,7 @@
 			    </button>
 			  </h5>
 			</div>
-			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-			  <div class="card-body">
-			    <p><b>persistend ID:</b> <%= @dsdatum.stableIdentifier %></p>
-			    <p><b>Name: </b><%= @dsdatum.scientificName %></p>
-			    <p><b>Geographical Region: </b></p>
-			      <ul>
-				<li><b>Country: </b><%= @dsdatum.country %></li>
-				<li><b>Locality: </b><%= @dsdatum.locality %></li>
-			      </ul>
-			  </div>
-			</div>
+			<%= render partial: 'cardtwo', locals: {dsdatum: @dsdatum, schema: @do_schema} %> 
 		      </div>
 		      <div class="card">
 			<div class="card-header" id="headingThree">
@@ -83,14 +32,7 @@
 			    </button>
 			  </h5>
 			</div>
-			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-			  <div class="card-body">
-			    <p><b>Geo Location: </b><%= @dsdatum.decimalLatLong %></p>
-			    <p><b>Collected by: </b><%= @dsdatum.recordedBy %></p>
-			    <p><b>Collection date: </b><%= @dsdatum.collectionDate %></p>
-			    <p><b>Collection Code: </b><%= @dsdatum.collectionCode %></p>
-			  </div>
-			</div>
+			<%= render partial: 'cardthree', locals: {dsdatum: @dsdatum, schema: @do_schema} %> 
 		      </div>
 		      <div class="card">
 			<div class="card-header" id="headingFour">
@@ -100,8 +42,11 @@
 			    </button>
 			  </h5>
 			</div>
+			<%= render partial: 'cardfour', locals: {dsdatum: @dsdatum, schema: @do_schema} %> 
+
 			<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
 			  <div class="card-body">
+			  
 			    <p><b>Other Catalogue Number(s): </b>NHMUK:ecatalogue:6913691 </p>
 			    <p><b>Preservation: </b>Dry Mounted </p>
 			    <p><b>Common Name:</b> July Belle </p>
@@ -157,5 +102,6 @@
 		    </a>
 		  </div>
         </div>
+	<%= link_to 'back', specimens_path, :class => "btn btn-primary btn-xs" %>
     </div>
     
