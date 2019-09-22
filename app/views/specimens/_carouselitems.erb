@@ -20,4 +20,11 @@
 				<img src= "<%= img_uri %>" class="d-block w-100" alt= "<%= img_capt %>" >
 			</div>  
 		<% end %>
+	<% else %>
+		<% img_uri = 'ds_default_03.png' %>
+		<% img_capt = "No image availabel" %>
+		<div class="carousel-item active">
+			<img src= "<%= image_url(img_uri) %>" class="d-block w-100" alt= "<%= img_capt %>" >
+		</div>  	
 	<% end %>
+	
