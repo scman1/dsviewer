@@ -1,0 +1,29 @@
+<div id="carouselImages" class="carousel slide" data-ride="carousel" data-interval="false">
+	<div class="carousel-inner">
+<% schema["properties"].each do |field|  %>
+		<% field_name = field[0].gsub('/','_') %>
+		<% field_name = field_name.gsub(' ','') %>
+		<% field_title = field[1]["title"].to_s %>
+		<% field_format = field[1]["format"].to_s %>
+		<% if field_title == ""
+			field_title = field[0]
+		       end %>
+		<% field_name = "@" + field_name 
+			f_value = dsdatum.instance_variable_get(field_name .to_sym)
+			f_type = field[1]["type"] 
+			f_format = field[1]["format"] 
+			imgarr = ["Availableimages"] %>
+		<% if imgarr.include?(field_title) %>
+			<%= render partial: 'carouselitems', locals: {field_title: field_title, field_value: f_value} %> 
+		<% end %>
+	<% end %>
+	</div>
+	<a class="carousel-control-prev" href="#carouselImages" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselImages" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>

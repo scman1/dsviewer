@@ -1,0 +1,21 @@
+<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+	<div class="card-body">
+	<% schema["properties"].each do |field|  %>
+		<% field_name = field[0].gsub('/','_') %>
+		<% field_name = field_name.gsub(' ','_') %>
+		<% field_title = field[1]["title"].to_s %>
+		<% field_format = field[1]["format"].to_s %>
+		<% if field_title == ""
+			field_title = field[0]
+		       end %>
+		<% field_name = "@" + field_name 
+			f_value = dsdatum.instance_variable_get(field_name .to_sym)
+			f_type = field[1]["type"] 
+			f_format = field[1]["format"] 
+			level1 = ["CETAF stable identifier (uri)",  "Scientific name", "Country", "Locality"] %>
+		<% if level1.include?(field_title) %>
+			<%= render partial: 'fieldview', locals: {field_title: field_title, field_value: f_value, field_type: f_type, field_format: f_format} %> 
+		<% end %>
+	<% end %>
+	</div>
+</div>
