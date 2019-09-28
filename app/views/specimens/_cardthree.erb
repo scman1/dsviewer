@@ -13,7 +13,7 @@
 			f_value = dsdatum.instance_variable_get(field_name .to_sym)
 			f_type = field[1]["type"] 
 			f_format = field[1]["format"] 
-			level2 = ["Collection date",  "Recorded by", "Collection code (GRSciColl)", "Latitude,Longitude"] %>
+			level2 = ["Collection date",  "Recorded by", "Collection code (GRSciColl)", "Coordinates (decimal lat/lon)"] %>
 		<% if level2.include?(field_title) %>
 			<%= render partial: 'fieldview', locals: {field_title: field_title, field_value: f_value, field_type: f_type, field_format: f_format} %> 
 		<% end %>

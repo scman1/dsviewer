@@ -6,10 +6,18 @@
 	<%= render partial: 'intfield', locals: {field_title: field_title, field_value: field_value} %> 
 <% elsif field_type== "array" && field_title.include?("images") %>
 	<%= render partial: 'arrimgs', locals: {field_title: field_title, field_value: field_value} %> 
-<% elsif field_type == "array" && field_title.include?("Long") %>
+<% elsif field_type == "array" && field_title.include?("lat/lon") %>
 	<%= render partial: 'strfield', locals: {field_title: field_title, field_value: field_value} %>
 <% elsif field_type == "array" && field_title.include?("pages") %>
         <%= render partial: 'strfield', locals: {field_title: field_title, field_value: field_value} %>
 <% else %>
-	<p><%= field_type field_format %></p>
+	<p>
+	<%= 
+	   begin 
+	     field_type field_format 
+	   rescue
+	     field_value
+	   end
+	%>
+	</p>
 <% end %>

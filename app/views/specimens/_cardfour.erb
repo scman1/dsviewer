@@ -17,7 +17,7 @@
 			"CETAF stable identifier (uri)",  "Scientific name", "Country", "Locality",
 			"Institution code (GRSciColl)", "Physical specimen identifier", 
 			"Collection date",  "Recorded by", "Collection code (GRSciColl)", 
-			"Latitude,Longitude","Availableimages"] %>
+			"Coordinates (decimal lat/lon)","Available images"] %>
 		<% if !levels0_2.include?(field_title) %>
 			<%= render partial: 'fieldview', locals: {field_title: field_title, field_value: f_value, field_type: f_type, field_format: f_format} %> 
 		<% end %>

@@ -53,7 +53,9 @@ class SpecimensController < ApplicationController
     #end
     @dsdata = ds_return
     puts("*****************GET /dsobj*****************")
-    puts @dsdata 
+    @dsdata.each do |dsdatum|
+	puts dsdatum.id
+    end
     puts("*****************GET /dsobj*****************")
   end
 
