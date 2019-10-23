@@ -1,13 +1,13 @@
 <div class = "container">
 	<div class = "row">
 		<div class = "col-md-7">
-			<p class="specimendetails text-center" >Digital Specimen</p>
+			<p class="specimendetails text-center" >Edit Digital Specimen</p>
 			<h2><%= @dsdatum.scientificName %></h2>
 			<div id="accordion">
 				<div class="card">
 					<div class="card-header" id="headingOne">
 						<h5 class="mb-0">
-							<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
 								<%=image_tag("mids0.png", alt: "(Level 0)", width: "60")%> Catalogue Data
 							</button>
 						</h5>
@@ -38,7 +38,7 @@
 				<div class="card">
 					<div class="card-header" id="headingFour">
 						<h5 class="mb-0">
-							<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+							<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
 								<%=image_tag("mids3.png", alt: "(Level 3)", width: "60")%>  Extended Data (Editable)
 							</button>
 						</h5>
