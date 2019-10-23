@@ -16,12 +16,11 @@
 							%> 
 							<%= 
 							    begin
-							      link_to 'Edit', {:controller => 'specimens', :action => 'show', :id =>specimen_id}, :class => "btn btn-secondary" 
+							      link_to 'Edit', {:controller => 'specimens', :action => 'edit', :id =>specimen_id}, :class => "btn btn-secondary" 
 							    rescue
 							      specimen_id
 							    end
 							%> 
-			
 						</div>
 						<small class="text-muted"><%= preservation %><br/><%= collection_group %> </small>
 					</div>

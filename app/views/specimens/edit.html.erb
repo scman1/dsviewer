@@ -1,0 +1,57 @@
+<div class = "container">
+	<div class = "row">
+		<div class = "col-md-7">
+			<p class="specimendetails text-center" >Digital Specimen</p>
+			<h2><%= @dsdatum.scientificName %></h2>
+			<div id="accordion">
+				<div class="card">
+					<div class="card-header" id="headingOne">
+						<h5 class="mb-0">
+							<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								<%=image_tag("mids0.png", alt: "(Level 0)", width: "60")%> Catalogue Data
+							</button>
+						</h5>
+					</div>
+					<%= render partial: 'cardone', locals: {dsdatum: @dsdatum, schema: @do_schema} %> 
+				</div>
+				<div class="card">
+					<div class="card-header" id="headingTwo">
+						<h5 class="mb-0">
+							<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								<%=image_tag("mids1.png", alt: "(Level 1)", width: "60")%> Basic Data
+							</button>
+						</h5>
+					</div>
+					<%= render partial: 'cardtwo', locals: {dsdatum: @dsdatum, schema: @do_schema} %> 
+				</div>
+				<div class="card">
+					<div class="card-header" id="headingThree">
+						<h5 class="mb-0">
+							<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								<%=image_tag("mids2.png", alt: "(Level 2)", width: "60")%> Regular Data
+							</button>
+						</h5>
+					</div>
+					<%= render partial: 'cardthree', locals: {dsdatum: @dsdatum, schema: @do_schema} %> 
+				</div>
+				<!--The only editable part should be in Level 3, this is the data linked from other repositories-->
+				<div class="card">
+					<div class="card-header" id="headingFour">
+						<h5 class="mb-0">
+							<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+								<%=image_tag("mids3.png", alt: "(Level 3)", width: "60")%>  Extended Data (Editable)
+							</button>
+						</h5>
+					</div>
+					<%= render partial: 'cardfour', locals: {dsdatum: @dsdatum, schema: @do_schema} %> 
+				</div>
+			</div><!--End of Accordion-->
+			The information is organised in line with the Minimum Information Standard about Digital Specimen (MIDS)
+		</div><!--End of Accordion column col-md-7 -->
+		<div class = "col-md-5">
+			<%= render partial: 'carouselimages', locals: {dsdatum: @dsdatum, schema: @do_schema} %> 
+		</div> <!--End of carousel column col-md-5 -->
+        </div><!--End of row -->
+	<%= link_to 'back', specimens_path, :class => "btn btn-primary btn-xs" %>
+</div><!--End of container -->
+    

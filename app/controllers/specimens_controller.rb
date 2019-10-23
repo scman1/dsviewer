@@ -70,15 +70,15 @@ class SpecimensController < ApplicationController
     @dsdatum = new_specimen
   end
 
-  #~ # GET /dsdata/1/edit
-  #~ def edit
-    #~ #puts dsdatum_params
-    #~ puts("*****************GET /dsdata/1/edit*****************")
-    #~ puts(params)
-    #~ puts(@dsdatum.id)
-    #~ #puts(@dsdatum.new_record?)
-    #~ puts("****************************************************")
-  #~ end
+  # GET /dsdata/1/edit
+  def edit
+    #puts dsdatum_params
+    puts("*****************GET /dsdata/1/edit*****************")
+    puts(params)
+    puts(@dsdatum.id)
+    #puts(@dsdatum.new_record?)
+    puts("****************************************************")
+  end
 
   #~ # POST /dsdata
   #~ # POST /dsdata.json
