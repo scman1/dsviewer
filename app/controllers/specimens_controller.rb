@@ -10,7 +10,7 @@ class SpecimensController < ApplicationController
       num_page = params[:page].to_i-1
     end
     if not(params.key?("items"))
-      items = 10
+      items = 50
     else
       items = params[:items].to_i
     end    
@@ -65,10 +65,10 @@ class SpecimensController < ApplicationController
 
   end
 
-  #~ # GET /dsdata/new
-  #~ def new
-    #~ @dsdatum = Dsdatum.new
-  #~ end
+  # GET /dsdata/new
+  def new
+    @dsdatum = new_specimen
+  end
 
   #~ # GET /dsdata/1/edit
   #~ def edit
@@ -176,6 +176,19 @@ class SpecimensController < ApplicationController
         puts(@dsdatum.id)
 	
         puts("****************************************************")
+    end
+
+    def new_specimen
+	    
+	# A. get new digital object
+	# B. get schema
+	#     The schema will be used to build a DO class dinamically
+	result=CordraRestClient::DigitalObject.get_schema("DigitalSpecimen")
+	@do_schema = JSON.parse(result.body)
+	# C. build new class using schema
+	@do_properties = @do_schema["properties"].keys
+	do_c = CordraRestClient::DigitalObjectFactory.create_class "DigitalSpecimen", @do_properties 
+	do_c.new
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
