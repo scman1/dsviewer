@@ -9,14 +9,14 @@
 						<div class="btn-group">
 							<%= 
 							     begin
-							       link_to 'Show', {:controller => 'specimens', :action => 'show', :id =>specimen_id}, :class => "btn btn-primary" 
-							     rescue
-								specimen_id 
+							       link_to 'Show', {:controller => 'specimens', :action => 'show', :id =>specimen_id.gsub("-","_")}, :class => "btn btn-primary"
+							     rescue => error
+							      	specimen_id
 							     end
 							%> 
 							<%= 
 							    begin
-							      link_to 'Edit', {:controller => 'specimens', :action => 'edit', :id =>specimen_id}, :class => "btn btn-secondary" 
+							      link_to 'Edit', {:controller => 'specimens', :action => 'edit', :id =>specimen_id.gsub("-","_")}, :class => "btn btn-secondary"
 							    rescue
 							      specimen_id
 							    end

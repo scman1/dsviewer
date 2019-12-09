@@ -8,19 +8,19 @@
         <div class="container">
           <div class="row">
 	    <% @dsdata.each do |dsdatum| %>
-	      <% @id=dsdatum.id.split("/")[1] 
-	            @scientificName = dsdatum.scientificName 
-   	            @countryName = dsdatum.country 
-		    @img_uri = nil 
+	      <% @id=dsdatum.id.split("/")[1]
+	            @scientificName = dsdatum.scientificName
+   	            @countryName = dsdatum.country
+		    @img_uri = nil
 		    @collection_group=nil
 		    @preservation=nil
-	            if !dsdatum.other_Keywords.nil? 
-	              string_ok = dsdatum.other_Keywords 
+	            if !dsdatum.other_Keywords.nil?
+	              string_ok = dsdatum.other_Keywords
 	              json_ok = JSON.parse(string_ok)
 		      @collection_group = json_ok["collectiongroup"]
-                      @preservation = json_ok["preservation"] 	
+                      @preservation = json_ok["preservation"]
 		    end %>
-	      <% if !dsdatum.availableImages.nil? 
+	      <% if !dsdatum.availableImages.nil?
 	              images = dsdatum.availableImages
 		      images.each do |img_data|
                         img_data.each do |value|
@@ -33,7 +33,7 @@
 			  break
 			end
                       end
-	            end %> 
+	            end %>
 		<% if @img_uri.nil?
 		         if  !@collection_group.nil?
 			   case @collection_group
@@ -47,7 +47,7 @@
 			 else
 			   @img_uri = 'ds_default_03.png'
 			 end
-		      end %>   
+		      end %>
 	      <% if !@id.nil? %>
 		<%= render partial: 'specimen_card' , locals: {specimen_id: @id, scientific_name: @scientificName, specimen_origin:  @countryName, collection_group: @collection_group, preservation: @preservation, img_uri: @img_uri } %>
 	      <% end %>
@@ -55,3 +55,17 @@
           </div><!--row-->
         </div><!--container-->
       </div><!--class album py-5 bg-light -->
+
+			<div class="container container-table">
+				<div class="row vertical-center-row">
+					<div class="text-center col-md-12">
+						<ul class="pagination">
+							<li class="page-item <%=@current_page==1?"disabled":""%>"><a class="page-link" href="?page=<%=@current_page-1%>">Previous</a></li>
+							<% for @i in [1,@current_page-10].max..[@total_pages,@current_page+10].min do %>
+								<li class="page-item <%=@i==@current_page?"active":""%>"><a class="page-link" href="?page=<%=@i%>"><%=@i%></a></li>
+							<% end %>
+							<li class="page-item <%=@current_page==@total_pages?"disabled":""%>"><a class="page-link" href="?page=<%=@current_page+1%>">Next</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>

@@ -1,0 +1,81 @@
+{
+  "id": "20.5000.1025/05a8dcccce0a1ed04738",
+  "type": "DigitalSpecimen",
+  "content": {
+    "id": "20.5000.1025/05a8dcccce0a1ed04738",
+    "creationdatetime": "2019-12-03T17:18:25.170Z",
+    "creator": "20.5000.1025/d298a8c18cb62ee602b8",
+    "midslevel": 1,
+    "scientificName": "test testorum",
+    "authorReference": "francisco quevedo",
+    "institutionCode": "cu",
+    "physicalSpecimenId": "abc"
+  },
+  "metadata": {
+    "createdOn": 1575393505170,
+    "createdBy": "20.5000.1025/d298a8c18cb62ee602b8",
+    "modifiedOn": 1575393920841,
+    "modifiedBy": "20.5000.1025/d298a8c18cb62ee602b8",
+    "txnId": 1575393920830026,
+    "internalMetadata": {}
+  },
+  "provenanceRecords": [
+    {
+      "id": "prov.994/5e226eef8fcc4c5a79bf",
+      "type": "EventProvenanceRecord",
+      "attributes": {
+        "content": {
+          "id": "prov.994/5e226eef8fcc4c5a79bf",
+          "eventTypeId": "prov.994/6e157c5da4410b7e9de8",
+          "entityId": "20.5000.1025/05a8dcccce0a1ed04738",
+          "agentId": "20.5000.1025/d298a8c18cb62ee602b8",
+          "roleId": "20.5000.1025/808d7dca8a74d84af27a",
+          "timestamp": 1575393505170,
+          "description": "Digital object created",
+          "revisionId": "20.5000.1025/d93e793fbd93486bbc41"
+        },
+        "metadata": {
+          "createdOn": 1575393509200,
+          "createdBy": "admin",
+          "modifiedOn": 1575393509200,
+          "modifiedBy": "admin",
+          "txnId": 1575393509200041
+        }
+      },
+      "elements": []
+    },
+    {
+      "id": "prov.994/63cc504e692270627600",
+      "type": "EventProvenanceRecord",
+      "attributes": {
+        "content": {
+          "id": "prov.994/63cc504e692270627600",
+          "eventTypeId": "prov.994/fb91e24fa52d8d2b3293",
+          "entityId": "20.5000.1025/05a8dcccce0a1ed04738",
+          "agentId": "20.5000.1025/d298a8c18cb62ee602b8",
+          "roleId": "20.5000.1025/808d7dca8a74d84af27a",
+          "timestamp": 1575393528612,
+          "description": "Digital object updated",
+          "data": {
+            "changes": {
+              "onlyOnLeft": {
+                "/authorReference": "francisco quevedo"
+              },
+              "onlyOnRight": {},
+              "differences": {}
+            }
+          },
+          "revisionId": "20.5000.1025/828e9102aa883f4a54c1"
+        },
+        "metadata": {
+          "createdOn": 1575393532498,
+          "createdBy": "admin",
+          "modifiedOn": 1575393532498,
+          "modifiedBy": "admin",
+          "txnId": 1575393532498042
+        }
+      },
+      "elements": []
+    }
+  ]
+}

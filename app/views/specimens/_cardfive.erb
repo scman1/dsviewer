@@ -1,0 +1,25 @@
+<div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+	<div class="card-body">
+		<ul>
+		<% @provenance_records.each do |prov_record| %>
+				<li>
+					<%=prov_record["id"]%>
+					<ul>
+						<% prov_record["attributes"]["content"].each do | key, value | %>
+							<li>
+							<%
+								concat key + ":"
+								if (key=="timestamp")
+									concat Time.at(value/1000).utc.to_datetime
+								else
+									concat value
+								end
+							%>
+							</li>
+						<% end %>
+					</ul>
+				</li>
+		<% end %>
+		</ul>
+	</div>
+</div>

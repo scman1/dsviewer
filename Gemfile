@@ -7,7 +7,7 @@ ruby '2.6.1'
 gem 'rails', '~> 5.2.3'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.3.13'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -54,14 +54,18 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # Allow remote debugging
+  gem 'debase', '~> 0.2.4.1'
+  gem 'ruby-debug-ide', '~> 0.7.0'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.142', '>= 3.142.6'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'chromedriver-helper', '~> 2.1', '>= 2.1.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -69,9 +73,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #cordra gem and faraday for handling requests to nsidr
 gem 'cordra_rest_client', :git => 'https://github.com/scman1/cordra_client.git'
-gem 'faraday'
+gem 'faraday', '~> 0.17.1'
 
 # bootstrap gems
-gem 'bootstrap'
-gem 'jquery-rails'
-
+gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
+gem 'popper_js', '~> 1.14', '>= 1.14.5'
+gem 'bootstrap', '~> 4.0'

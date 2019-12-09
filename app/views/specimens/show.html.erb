@@ -44,6 +44,18 @@
 					</div>
 					<%= render partial: 'cardfour', locals: {dsdatum: @dsdatum, schema: @do_schema} %> 
 				</div>
+
+				<div class="card">
+					<div class="card-header" id="headingFive">
+						<h5 class="mb-0">
+							<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+								<%=image_tag("provenance.png", alt: "Provenance", width: "40")%>  Provenance
+							</button>
+						</h5>
+					</div>
+					<%= render partial: 'cardfive', locals: {dsdatum: @provenance_records} %>
+				</div>
+
 			</div><!--End of Accordion-->
 			The information is organised in line with the Minimum Information Standard about Digital Specimen (MIDS)
 		</div><!--End of Accordion column col-md-7 -->
