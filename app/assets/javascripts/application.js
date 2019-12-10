@@ -18,3 +18,46 @@
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require_tree .
+//= require jquery-ui/widgets/tooltip
+
+
+$( function() {
+    enableTooltips();
+} );
+
+function enableTooltips(obj){
+    if (obj==undefined){
+        obj= $(document);
+    }
+
+    obj.tooltip({
+        track: true,
+        position: {
+            my: "center bottom-20",
+            at: "center top",
+
+            using: function( position, feedback ) {
+                $( this ).css( position );
+                $( "<div>" )
+                    .addClass( "arrow" )
+                    .addClass( feedback.vertical )
+                    .addClass( feedback.horizontal )
+                    .appendTo( this );
+            }
+        },
+        content: function() {
+            return $(this).attr('title');
+        },
+        open: function (event, ui) {
+            setTimeout(function () {
+                $(ui.tooltip).hide();
+            }, 3000);
+        },
+        /*show: {
+            effect: "blind",
+            delay: 150
+        }*/
+    });
+
+}
+

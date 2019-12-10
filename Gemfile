@@ -79,3 +79,9 @@ gem 'faraday', '~> 0.17.1'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 gem 'popper_js', '~> 1.14', '>= 1.14.5'
 gem 'bootstrap', '~> 4.0'
+
+# Font-awesome
+gem 'font-awesome-sass', '~> 5.11.2'
+
+#jquery-ui
+gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'

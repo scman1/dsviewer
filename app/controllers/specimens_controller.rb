@@ -14,14 +14,32 @@ class SpecimensController < ApplicationController
     else
       items = params[:items].to_i
     end
+    if not(params.key?("search"))
+      @search = ""
+    else
+      @search = params[:search]
+    end
     puts("*****************GET /dsdata*****************")
     # get DS list from CORDRA
     begin
-      list_ds = CordraRestClient::DigitalObject.search("DigitalSpecimen",num_page, items)
+      query = "type:DigitalSpecimen"
+      unless @search.to_s.strip.empty?
+        if (@search.include?":") && (@search.include?"/") || (@search.include?" AND ") || (@search.include?" OR ")
+          # the user seems to do a search using a Lucene query syntax, so keep it
+          query += " AND (" + @search + ")"
+        else
+          # the user doesn't seems to do a search using a lucene query syntax, so we escape it
+          query += " AND (\"" + @search.gsub(/([\\|\+|\-|\!|\(|)|\:|\^|\[|\]|\"|\{|\~|\*|\?|\||\&|\/])/, '\\\\\1') + "\")"
+        end
+      end
+      puts "the query is " + query
+      list_ds = CordraRestClient::DigitalObject.advanced_search(query,num_page,items)
 
       # enable pagination
-      @current_page= num_page + 1
-      @total_pages = (list_ds["size"].to_f/items).ceil
+      @page_size = items
+      @current_page = num_page + 1
+      @total_records = list_ds["size"]
+      @total_pages = (@total_records.to_f/items).ceil
 
       # get DS schema from CORDRA
       result=CordraRestClient::DigitalObject.get_schema("DigitalSpecimen")
@@ -57,11 +75,11 @@ class SpecimensController < ApplicationController
 
     #end
     @dsdata = ds_return
-    puts("*****************GET /dsobj*****************")
-    @dsdata.each do |dsdatum|
-      puts dsdatum.id
-    end
-    puts("*****************GET /dsobj*****************")
+    # puts("*****************GET /dsobj*****************")
+    # @dsdata.each do |dsdatum|
+    #   puts dsdatum.id
+    # end
+    # puts("*****************GET /dsobj*****************")
   end
 
   # GET /specimens/1

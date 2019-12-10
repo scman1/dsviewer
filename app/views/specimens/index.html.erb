@@ -1,6 +1,6 @@
       <section class="jumbotron text-center">
         <div class="container">
-          <h5 class="jumbotron-heading">Album View</h5>
+          <h5 class="jumbotron-heading">Album View (<%= @dsdata.length.to_s + " of " + @total_records.to_s %>)</h5>
         </div>
       </section>
 
@@ -59,13 +59,49 @@
 			<div class="container container-table">
 				<div class="row vertical-center-row">
 					<div class="text-center col-md-12">
-						<ul class="pagination">
-							<li class="page-item <%=@current_page==1?"disabled":""%>"><a class="page-link" href="?page=<%=@current_page-1%>">Previous</a></li>
-							<% for @i in [1,@current_page-10].max..[@total_pages,@current_page+10].min do %>
-								<li class="page-item <%=@i==@current_page?"active":""%>"><a class="page-link" href="?page=<%=@i%>"><%=@i%></a></li>
-							<% end %>
-							<li class="page-item <%=@current_page==@total_pages?"disabled":""%>"><a class="page-link" href="?page=<%=@current_page+1%>">Next</a></li>
-						</ul>
+							<ul class="pagination justify-content-center">
+									<li class="page-item <%=@current_page==1?"disabled":""%>">
+										<a class="page-link" href="javascript:paginate(<%=@current_page-1%>);">Previous</a></li>
+									<% for @i in [1,@current_page-10].max..[@total_pages,@current_page+10].min do %>
+										<li class="page-item <%=@i==@current_page?"active":""%>"><a class="page-link" href="javascript:paginate(<%=@i%>);"><%=@i%></a></li>
+									<% end %>
+									<li class="page-item <%=@current_page==@total_pages?"disabled":""%>"><a class="page-link" href="javascript:paginate(<%=@current_page+1%>);">Next</a></li>
+									<%= form_tag({:controller => "specimens", :action => "index"}, :method => "get", :id => 'paginationForm', :class => 'form-inline justify-content-center') do%>
+										<div class="input-group">
+											<button type="button" class="btn btn-default" disabled>Page</button>
+											<input required type="text" class="form-control" name="page" id="page" onchange="javascript:submitPaginationForm()"
+														 style="max-width: 80px" placeholder="Page #" value="<%=@current_page%>">
+											<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" title="Options"><i class="fas fa-cogs"></i></button>
+											<div class="dropdown-menu">
+												<div class="form-group">
+													<label for="Page size">Page size</label>
+													<input type="text" class="form-control" name="items" id="items" onchange="javascript:submitPaginationForm()"
+																 placeholder="Page size" value="<%=@page_size%>">
+													<input type="hidden" name="search" id="search" value="<%=@search%>">
+												</div>
+											</div>
+										</div>
+								<% end %>
+							</ul>
 					</div>
 				</div>
 			</div>
+
+			<script language="JavaScript">
+				function paginate(page){
+					$("#page").val(page);
+					submitPaginationForm();
+				}
+
+				function submitPaginationForm(){
+					var page = $("#page").val();
+					if (!Number.isInteger(page) || page==0){
+						page=1;
+					}
+					var items = $("#items").val();
+					if (!Number.isInteger(items) || items==0){
+						items=50;
+					}
+					$("#paginationForm").submit();
+				}
+			</script>
