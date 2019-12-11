@@ -24,15 +24,14 @@ class SpecimensController < ApplicationController
     begin
       query = "type:DigitalSpecimen"
       unless @search.to_s.strip.empty?
-        if (@search.include?":") && (@search.include?"/") || (@search.include?" AND ") || (@search.include?" OR ")
+        if (@search.include?":") && (@search.include?"/") || (@search.downcase.include?" and ") || (@search.downcase.include?" or ")
           # the user seems to do a search using a Lucene query syntax, so keep it
-          query += " AND (" + @search + ")"
+          query += " AND (" + @search.gsub(" and "," AND ").gsub(" or ", " OR ") + ")"
         else
           # the user doesn't seems to do a search using a lucene query syntax, so we escape it
           query += " AND (\"" + @search.gsub(/([\\|\+|\-|\!|\(|)|\:|\^|\[|\]|\"|\{|\~|\*|\?|\||\&|\/])/, '\\\\\1') + "\")"
         end
       end
-      puts "the query is " + query
       list_ds = CordraRestClient::DigitalObject.advanced_search(query,num_page,items)
 
       # enable pagination
