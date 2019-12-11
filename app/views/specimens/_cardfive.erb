@@ -6,16 +6,7 @@
 					<%=prov_record["id"]%>
 					<ul>
 						<% prov_record["attributes"]["content"].each do | key, value | %>
-							<li>
-							<%
-								concat key + ":"
-								if (key=="timestamp")
-									concat Time.at(value/1000).utc.to_datetime
-								else
-									concat value
-								end
-							%>
-							</li>
+							<li><% concat key + ":" + value.to_s %></li>
 						<% end %>
 					</ul>
 				</li>

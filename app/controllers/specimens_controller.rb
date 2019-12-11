@@ -5,23 +5,25 @@ class SpecimensController < ApplicationController
   def index
     #get the list of digital specimens from api
     if not(params.key?("page"))
-      num_page = 0
+      session[:num_page] = session.fetch(:num_page, 1)
     else
-      num_page = params[:page].to_i-1
+      session[:num_page] = params[:page].to_i
     end
     if not(params.key?("items"))
-      items = 50
+      session[:page_size] = session.fetch(:page_size, 50)
     else
-      items = params[:items].to_i
+      session[:page_size] = params[:items].to_i
     end
     if not(params.key?("search"))
-      @search = ""
+      session[:search] = session.fetch(:search, "")
     else
-      @search = params[:search]
+      session[:search] = params[:search]
     end
     puts("*****************GET /dsdata*****************")
     # get DS list from CORDRA
     begin
+      # enable search
+      @search = session[:search]
       query = "type:DigitalSpecimen"
       unless @search.to_s.strip.empty?
         if (@search.include?":") && (@search.include?"/") || (@search.downcase.include?" and ") || (@search.downcase.include?" or ")
@@ -32,13 +34,17 @@ class SpecimensController < ApplicationController
           query += " AND (\"" + @search.gsub(/([\\|\+|\-|\!|\(|)|\:|\^|\[|\]|\"|\{|\~|\*|\?|\||\&|\/])/, '\\\\\1') + "\")"
         end
       end
-      list_ds = CordraRestClient::DigitalObject.advanced_search(query,num_page,items)
 
       # enable pagination
-      @page_size = items
-      @current_page = num_page + 1
+      @current_page = session[:num_page]
+      @page_size = session[:page_size]
+
+      # Get digital specimens from CORDRA
+      list_ds = CordraRestClient::DigitalObject.advanced_search(query,@current_page-1,@page_size)
+
       @total_records = list_ds["size"]
-      @total_pages = (@total_records.to_f/items).ceil
+      @total_pages = (@total_records.to_f/@page_size).ceil
+
 
       # get DS schema from CORDRA
       result=CordraRestClient::DigitalObject.get_schema("DigitalSpecimen")

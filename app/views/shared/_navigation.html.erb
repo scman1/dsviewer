@@ -10,10 +10,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li>
-	<%= link_to image_tag('album_icon.svg'), {:controller => 'specimens', :action => 'index'}, :class => "nav-link active", title: "View album"%>
+				<%= link_to image_tag('album_icon.svg'), {:controller => 'specimens', :action => 'index'}, {:class => "nav-link active", title: "View album"}%>
       </li>
       <li>
-	<%= link_to image_tag('new_spec_icon.svg'), {:controller => 'specimens', :action => 'new'}, :class => "nav-link active", title: "New specimen" %>
+				<%= link_to image_tag('new_spec_icon.svg'), {:controller => 'specimens', :action => 'new'}, {:class => "nav-link active", title: "New specimen"} %>
       </li>
     </ul>
 
@@ -21,14 +21,17 @@
 			<%= form_tag({:controller => "specimens", :action => "index"}, :method => "get", :id => 'searchForm', :class => 'navbar-form', :enforce_utf8 => false) do%>
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search" name="search" id="search" value="<%=@search%>" onchange="javascript:$('#searchForm').submit();">
-					<div class="input-group-btn">
+					<div class="input-group-btn" title="You can search by free text or use lucene query syntax like /country:Japan AND /locality:Tosa AND /institutionCode:ANSP">
 						<%= button_tag(type: "submit", name:"", class: "btn btn-default") do %>
-							<i class="fas fa-search h4 text-body" title="You can search by free text or use lucene query syntax like /country:Japan AND /locality:Tosa AND /institutionCode:ANSP"></i>
+							<i class="fas fa-search h4 text-body"></i>
 						<% end %>
 					</div>
 				</div>
 			<% end %>
 		</div>
+
+
+
   </div>
 </nav>
 
