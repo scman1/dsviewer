@@ -40,15 +40,14 @@ class SpecimensController < ApplicationController
       @page_size = session[:page_size]
 
       # Get digital specimens from CORDRA
-      list_ds = CordraRestClient::DigitalObject.advanced_search(query,@current_page-1,@page_size)
+      list_ds = CordraRestClient::DigitalObject.advanced_search(Rails.configuration.cordra_server_url,query,@current_page-1,@page_size)
 
       @total_records = list_ds["size"]
       @total_pages = (@total_records.to_f/@page_size).ceil
 
 
       # get DS schema from CORDRA
-      result=CordraRestClient::DigitalObject.get_schema("DigitalSpecimen")
-      do_schema = JSON.parse(result.body)
+      do_schema = CordraRestClient::DigitalObject.get_schema(Rails.configuration.cordra_server_url,"DigitalSpecimen")
       # create a new class for the DS from the schema
       do_properties = do_schema["properties"].keys
       ds_class = CordraRestClient::DigitalObjectFactory.create_class "DigitalSpecimen", do_properties
@@ -168,10 +167,11 @@ class SpecimensController < ApplicationController
 
     # A. get digital object
     begin
+      cordra_server_prefix = Rails.configuration.cordra_server_prefix
       specimen_id = params[:id].gsub("_","-")
-      cdo = CordraRestClient::DigitalObject.find("20.5000.1025/#{specimen_id}")
+      cdo = CordraRestClient::DigitalObject.find(Rails.configuration.cordra_server_url,"#{cordra_server_prefix}/#{specimen_id}")
 
-      prov_records = CordraRestClient::DigitalObject.call_instance_method("20.5000.1025/#{specimen_id}","getProvenanceRecords",nil,nil)
+      prov_records = CordraRestClient::DigitalObject.call_instance_method(Rails.configuration.cordra_server_url,"#{cordra_server_prefix}/#{specimen_id}","getProvenanceRecords",nil,nil)
       @provenance_records = prov_records["provenanceRecords"]
 
       # Check object id and type
@@ -179,8 +179,7 @@ class SpecimensController < ApplicationController
       puts cdo.type
       # B. get schema
       #     The schema will be used to build a DO class dinamically
-      result=CordraRestClient::DigitalObject.get_schema(cdo.type)
-      @do_schema = JSON.parse(result.body)
+      @do_schema = CordraRestClient::DigitalObject.get_schema(Rails.configuration.cordra_server_url,cdo.type)
       # C. build new class using schema
       @do_properties = @do_schema["properties"].keys
       do_c = CordraRestClient::DigitalObjectFactory.create_class cdo.type, @do_properties
@@ -218,8 +217,7 @@ class SpecimensController < ApplicationController
     # A. get new digital object
     # B. get schema
     #     The schema will be used to build a DO class dinamically
-    result=CordraRestClient::DigitalObject.get_schema("DigitalSpecimen")
-    @do_schema = JSON.parse(result.body)
+    @do_schema = CordraRestClient::DigitalObject.get_schema(Rails.configuration.cordra_server_url,"DigitalSpecimen")
     # C. build new class using schema
     @do_properties = @do_schema["properties"].keys
     do_c = CordraRestClient::DigitalObjectFactory.create_class "DigitalSpecimen", @do_properties

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/scman1/cordra_client.git
-  revision: ddf075016fc30e8cc056e8b88666f73515738dd0
+  revision: b9592930cc7bc068f9358caa37c00344031f894f
   specs:
     cordra_rest_client (0.1.0)
 
